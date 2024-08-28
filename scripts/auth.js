@@ -24,7 +24,7 @@ class Auth {
             }
 
             // Redirigir al home después de un inicio de sesión exitoso
-            window.location.href = "../html/home.html";
+            window.location.href = "../html/welcome.html";
 
         } catch (error) {
             alert(error.message);
