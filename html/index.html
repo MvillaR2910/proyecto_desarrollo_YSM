@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,10 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/event_listener.js"></script>
 </head>
+
 <body>
     <header>
         <h1>AirCNC</h1>
@@ -15,9 +19,19 @@
     <main>
         <div class="login-box">
             <h2>Iniciar Sesión</h2>
-            <input id="userName" type="text" class="input-text" placeholder="Nombre de usuario">
-            <input id="password" type="password" class="input-text" placeholder="Contraseña">
-            <a onclick="login()" class="primary">Ingresar</a>
+            <form onsubmit="Auth.login(event)" method="post">
+
+                <input id="email" type="email" class="input-text" placeholder="Email del usuario" required>
+                <div class="password">
+                    <input id="password" type="password" class="input-text" placeholder="Contraseña"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-z\d@$!%*?&\-_]{12,20}$" required
+                        title="La contraseña debe tener entre 12 y 20 caracteres, e incluir al menos una letra mayúscula, una letra minúscula, un número, y un carácter especial (ejemplo: @$!%*?&).">
+                    <button id="verPwd" type="button">Ver contraseña</button>
+                </div>
+
+                <!-- <a onclick=Auth.login() class="primary">Ingresar</a> -->
+                <button type="submit" class="primary">Ingresar </button>
+            </form>
             <a href="sign-up.html" class="secondary">Registrarse</a>
         </div>
     </main>
@@ -30,20 +44,6 @@
         </ul>
         <p>&copy; 2024 AirCNC Company</p>
     </footer>
-    <script>
-
-        function login(){
-            let userName = document.getElementById('userName').value;
-            let password = document.getElementById('password').value;
-            let storesdPassword = localStorage.getItem(userName)
-            console.log(storesdPassword);
-            if(storesdPassword!=null && storesdPassword===password){
-                alert('Ingreso exitoso');
-            }else{
-                alert('Ingreso no valido');
-            }
-        }
-
-    </script>
 </body>
+
 </html>

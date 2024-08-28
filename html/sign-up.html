@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,10 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/event_listener.js"></script>
 </head>
+
 <body>
     <header>
         <h1>AirCNC</h1>
@@ -15,11 +19,28 @@
     <main>
         <div class="login-box">
             <h2>Registrarse</h2>
-            <input type="text" class="input-text" placeholder="Nombre de usuario">
-            <input type="email" class="input-text" placeholder="Email">
-            <input type="password" class="input-text" placeholder="Contraseña">
-            <input type="password" class="input-text" placeholder="Repita su contraseña">
-            <a href="home.html" class="primary">Aceptar</a>
+            <form onsubmit="Auth.singup(event)" method="post">
+
+                <input id="nombre" type="text" class="input-text" placeholder="Nombre de usuario"
+                    pattern="^[A-Za-z][A-Za-z0-9]{7,14}$" required
+                    title="El nombre de usuario debe tener entre 8 y 15 caracteres, comenzar con una letra, y solo puede contener letras y números sin espacios.">
+                <input id="email" type="email" class="input-text" placeholder="Email" required>
+                <div class="password">
+                    <input id="password" type="password" class="input-text" placeholder="Contraseña"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-z\d@$!%*?&\-_]{12,20}$" required
+                        title="La contraseña debe tener entre 12 y 20 caracteres, e incluir al menos una letra mayúscula, una letra minúscula, un número, y un carácter especial (ejemplo: @$!%*?&).">
+                    <button id="verPwd" type="button">Ver contraseña</button>
+                </div>
+
+                <div class="confirmar-password">
+
+                    <input id="confirmarPassword" type="password" class="input-text" placeholder="Repita su contraseña"
+                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-z\d@$!%*?&\-_]{12,20}$" required
+                        title="La contraseña debe tener entre 12 y 20 caracteres, e incluir al menos una letra mayúscula, una letra minúscula, un número, y un carácter especial (ejemplo: @$!%*?&).">
+                    <button id="confirmarVerPwd" type="button">Ver contraseña</button>
+                </div>
+                <button type="submit"> Iniciar Sesión</button>
+            </form>
         </div>
     </main>
 
@@ -32,4 +53,5 @@
         <p>&copy; 2024 AirCNC Company</p>
     </footer>
 </body>
+
 </html>

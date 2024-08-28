@@ -66,6 +66,16 @@ main {
     text-align: center;
 }
 
+.login-box button{
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: rgb(162, 47, 47);
+    display: inline;
+    text-align: center;
+}
+
 a.primary {
     background-color: #ffb703;
     margin-bottom: 20px;
