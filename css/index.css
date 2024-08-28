@@ -1,0 +1,209 @@
+/* Estilos Generales */
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+header h1 {
+    font-size: 36px;
+    color: #FF385C;
+    margin: 0;
+}
+
+/* Login Box */
+.login-box {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-box h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-text {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.input-text:focus {
+    border-color: #FF385C;
+    outline: none;
+}
+
+.password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password input {
+    flex: 1; /* El input ocupará todo el espacio disponible */
+    padding-right: 50px; /* Deja espacio para el botón "Ver contraseña" */
+}
+
+.password button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #FF385C;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.password button:hover {
+    color: #e02d50;
+}
+
+.primary {
+    padding: 12px 20px;
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.primary:hover {
+    background-color: #e02d50;
+}
+
+.secondary {
+    display: inline-block;
+    margin-top: 10px;
+    color: #FF385C;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.secondary:hover {
+    color: #e02d50;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons li {
+    margin: 0 10px;
+}
+
+.social-icons li a {
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.social-icons li a:hover {
+    color: #FF385C;
+}
+
+footer p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    .login-box h2 {
+        font-size: 24px;
+    }
+
+    .password input {
+        width: calc(100% - 80px); /* Ajusta el tamaño del input de contraseña en pantallas más pequeñas */
+    }
+
+    .password button {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    .login-box {
+        padding: 20px 15px;
+    }
+
+    .login-box h2 {
+        font-size: 20px;
+    }
+
+    .input-text, .primary {
+        font-size: 14px;
+    }
+
+    .secondary {
+        font-size: 12px;
+    }
+
+    .social-icons li {
+        margin: 0 5px;
+    }
+
+    .social-icons li a {
+        font-size: 16px;
+    }
+}
