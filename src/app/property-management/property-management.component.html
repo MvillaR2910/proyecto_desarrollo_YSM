@@ -1,0 +1,11 @@
+<header>
+    <h1>Gestión de Propiedades</h1>
+</header>
+<main>
+    <div class="property-box" *ngFor="let property of properties">
+        <h3>{{ property.title }}</h3>
+        <button (click)="editProperty(property.id)">Editar</button>
+        <button (click)="deleteProperty(property.id)">Eliminar</button>
+    </div>
+    <button (click)="addProperty()">Añadir Propiedad</button>
+</main>
