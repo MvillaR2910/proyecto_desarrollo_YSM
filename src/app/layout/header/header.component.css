@@ -1,110 +1,118 @@
 /* Estilos generales del header */
 header {
-    background-color: #ffffff;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .nav-list {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    flex-grow: 1;
-  }
-  
-  .nav-list li {
-    margin-right: 20px;
-  }
-  
-  .nav-list li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    font-size: 18px;
-  }
-  
-  .nav-list li:first-child a {
-    color: #FF385C; /* Color del logo */
-    font-weight: 700;
-    font-size: 24px;
-  }
-  
-  .nav-list li a:hover {
-    color: #FF385C;
-  }
-  
-  /* Menú del muñeco */
-  .menu {
-    position: absolute;
-    padding-right: 30px;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .menu-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  /* Estilos del menú lateral */
-  .side-menu {
-    position: fixed;
-    top: 0;
-    right: -300px; /* Empieza fuera de la vista */
-    width: 300px;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease;
-    z-index: 2000;
-  }
-  
-  .side-menu.open {
-    right: 0; /* Mueve el menú dentro de la vista */
-  }
-  
-  .dropdown-menu {
-    list-style-type: none;
-    padding: 20px;
-  }
-  
-  .dropdown-menu li {
-    padding: 10px 16px;
-    font-size: 16px;
-  }
-  
-  .dropdown-menu li a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-  }
-  
-  .dropdown-menu li:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-  }
-  
-  .menu-button i {
-    font-size: 24px;
-    color: #333;
-  }
-  
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between; /* Cambiado para más espacio */
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.nav-list li {
+  margin-right: 20px; /* Ajusta el espacio entre los elementos si es necesario */
+}
+
+.nav-list li:first-child a {
+  color: #FF385C; /* Color del logo */
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px; /* Cambiado a un tamaño más pequeño */
+}
+
+.nav-list li a:hover {
+  color: #FF385C;
+}
+
+/* Menú del muñeco */
+.menu {
+  position: absolute;
+  padding-right: 30px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex; /* Añadir display flex */
+  align-items: center; /* Alinear elementos verticalmente */
+}
+
+.menu-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.menu-button span {
+  margin-left: 10px; /* Añadir espacio entre el ícono y el nombre */
+  font-size: 16px; /* Cambiar el tamaño de la fuente si es necesario */
+}
+
+
+.profile-picture {
+  width: 25px; /* Cambia el tamaño según lo necesites */
+  height: 25px; /* Cambia el tamaño según lo necesites */
+  border-radius: 50%; /* Para hacer la imagen redonda */
+  margin-right: 5px; /* Espacio entre la imagen y el texto */
+}
+
+.menu-button i {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilos del menú lateral */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Empieza fuera de la vista */
+  width: 300px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+  z-index: 2000;
+}
+
+.side-menu.open {
+  right: 0; /* Mueve el menú dentro de la vista */
+}
+
+.dropdown-menu {
+  list-style-type: none;
+  padding: 20px;
+}
+
+.dropdown-menu li {
+  padding: 10px 16px;
+  font-size: 16px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}

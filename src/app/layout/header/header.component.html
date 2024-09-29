@@ -10,7 +10,7 @@
         <ng-template #defaultIcon>
           <i class="fas fa-user"></i>
         </ng-template>
-        <span *ngIf="isLoggedIn">{{ userProfile?.username }}</span> <!-- Mostrar nombre de usuario -->
+        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span> <!-- Mostrar el correo del usuario -->
       </button>
     </div>
   </nav>

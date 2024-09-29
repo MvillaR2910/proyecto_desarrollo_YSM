@@ -33,10 +33,12 @@ export class LoginComponent {
         throw new Error("Email o contraseña inválidos.");
       }
 
-      // Guardar estado de sesión
-      localStorage.setItem('userProfile', JSON.stringify(jsonUsuario));
+      localStorage.setItem(this.email, JSON.stringify({
+        email: this.email, 
+        password: this.password,
+        profile_picture: 'url_de_imagen' 
+      }));
 
-      // Redirigir al home después de un inicio de sesión exitoso
       this.router.navigate(['/viviendas']);
     } catch (error: any) {
       alert(error.message);

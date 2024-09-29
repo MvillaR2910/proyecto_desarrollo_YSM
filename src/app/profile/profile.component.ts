@@ -1,21 +1,41 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+  userData = {
+    nombre: '',
+    email: '',
+    bio: '',
+    profile_picture: ''
+  };
 
-  userName: string = '';  // Define variables para enlazar con ngModel
-  userEmail: string = '';
+  ngOnInit() {
+    const storedUserData = localStorage.getItem(this.userData.email);
+    if (storedUserData) {
+      this.userData = JSON.parse(storedUserData);
+    }
+  }
 
-  // Define la función que se llamará al enviar el formulario
-  onUpdateProfile() {
-    // Aquí puedes agregar la lógica para actualizar el perfil
-    console.log('Perfil actualizado:', this.userName, this.userEmail);
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.userData.profile_picture = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  updateProfile() {
+    console.log(this.userData)
+    localStorage.setItem(this.userData.email, JSON.stringify(this.userData));
+    alert('Perfil actualizado exitosamente.');
   }
 }
