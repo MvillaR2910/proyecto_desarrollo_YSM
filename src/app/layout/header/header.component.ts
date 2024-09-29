@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,14 +8,27 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   menuOpen = false;
+  isLoggedIn = false;
+  userProfile: any;
+
+  ngOnInit() {
+    const storedUserData = localStorage.getItem('userProfile');
+    this.userProfile = storedUserData ? JSON.parse(storedUserData) : null;
+    this.isLoggedIn = !!this.userProfile; // Verifica si el usuario está logueado
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
-  // Cierra el menú si haces clic fuera del icono o del menú
+  logout() {
+    localStorage.removeItem('userProfile');
+    this.isLoggedIn = false;
+    window.location.reload(); // Refresca la página para actualizar el menú
+  }
+
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const target = event.target as HTMLElement;

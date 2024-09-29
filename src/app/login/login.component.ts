@@ -1,45 +1,43 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderComponent } from '../layout/header/header.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HeaderComponent],
+  imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email = '';
   password = '';
   passwordVisible = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) {}
 
   onLogin() {
-
     try {
       if (!this.email || !this.password) {
         throw new Error("Todos los campos deben estar completos.");
       }
 
       const stringUsuario = localStorage.getItem(this.email);
-
       if (!stringUsuario) {
         throw new Error("Email o contraseña inválidos.");
       }
 
       const jsonUsuario = JSON.parse(stringUsuario);
-
       if (this.password !== jsonUsuario.password) {
         throw new Error("Email o contraseña inválidos.");
       }
 
+      // Guardar estado de sesión
+      localStorage.setItem('userProfile', JSON.stringify(jsonUsuario));
+
       // Redirigir al home después de un inicio de sesión exitoso
-      this.router.navigate(['home']);
-
-
+      this.router.navigate(['/viviendas']);
     } catch (error: any) {
       alert(error.message);
     }
@@ -54,5 +52,4 @@ export class LoginComponent {
       passwordField.type = 'password';
     }
   }
-
 }

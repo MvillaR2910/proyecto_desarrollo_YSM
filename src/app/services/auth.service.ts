@@ -1,0 +1,17 @@
+// auth.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  constructor() {}
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('userProfile');
+  }
+
+  logout() {
+    localStorage.removeItem('userProfile');
+  }
+}
