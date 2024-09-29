@@ -1,8 +1,21 @@
 <header>
     <nav>
-        <ul>
-            <li>AirCNC</li>
-            <li><a href="home">Propiedades</a></li>
-        </ul>
+      <ul class="nav-list">
+        <li><a href="/">AirCNC</a></li>
+        <li><a href="/home">Propiedades</a></li>
+      </ul>
+      <div class="menu">
+        <button (click)="toggleMenu()" class="menu-button">
+          <i class="fas fa-user"></i>
+        </button>
+      </div>
     </nav>
-</header>
+  
+    <div class="side-menu" [class.open]="menuOpen">
+      <ul class="dropdown-menu">
+        <li><a href="/signup">Regístrate</a></li>
+        <li><a href="/login">Inicia sesión</a></li>
+      </ul>
+    </div>
+  </header>
+  
