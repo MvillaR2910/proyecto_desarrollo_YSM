@@ -1,0 +1,12 @@
+Estilos Generales
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
