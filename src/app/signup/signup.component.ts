@@ -11,23 +11,22 @@ import { Router } from '@angular/router';
     styleUrl: './signup.component.css'
 })
 export class SignupComponent {
-    nombre = ""
-    email = ""
-    pwd = ""
-    confirmarPwd = ""
-    passwordVisible = false
+    nombre = "";
+    email = "";
+    pwd = "";
+    confirmarPwd = "";
+    passwordVisible = false;
 
     constructor(private router: Router) { }
 
     onSignUp() {
-        
         try {
             // Validar campos vacíos
             if (!this.nombre || !this.email || !this.pwd || !this.confirmarPwd) {
                 throw new Error("Todos los campos deben estar completos.");
             }
 
-            // Verificar si el this.email ya está registrado
+            // Verificar si el email ya está registrado
             if (localStorage.getItem(this.email)) {
                 throw new Error("Email no disponible.");
             }
@@ -37,10 +36,10 @@ export class SignupComponent {
                 throw new Error("Las contraseñas deben coincidir.");
             }
 
-            // Validar this.nombre de usuario
-            const nombreRegex = /^[A-Za-z][A-Za-z0-9]{7,14}$/;
+            // Validar nombre de usuario
+            const nombreRegex = /^[A-Za-z][A-Za-z0-9]{3,14}$/;
             if (!nombreRegex.test(this.nombre)) {
-                throw new Error("El this.nombre de usuario debe tener entre 8 y 15 caracteres, comenzar con una letra, y solo puede contener letras y números sin espacios.");
+                throw new Error("El nombre de usuario debe tener entre 4 y 15 caracteres, comenzar con una letra, y solo puede contener letras y números sin espacios.");
             }
 
             // Validar contraseña
@@ -51,7 +50,7 @@ export class SignupComponent {
 
             // Guardar datos del usuario en localStorage
             const datosUsuario = {
-                nobre: this.nombre,
+                nombre: this.nombre,
                 password: this.pwd
             };
             localStorage.setItem(this.email, JSON.stringify(datosUsuario));
@@ -64,16 +63,9 @@ export class SignupComponent {
         }
     }
 
-    togglePwdVisibilidad(event:Event,pwd:string) {
-        
+    togglePwdVisibilidad(event: Event, pwd: string) {
         this.passwordVisible = !this.passwordVisible;
         const passwordField = document.getElementById(pwd) as HTMLInputElement;
-        if (this.passwordVisible) {
-          passwordField.type = 'text';
-        } else {
-          passwordField.type = 'password';
-        }
-      }
-
-
+        passwordField.type = this.passwordVisible ? 'text' : 'password';
+    }
 }
