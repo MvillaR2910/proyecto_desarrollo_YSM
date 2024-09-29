@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; // Importa RouterModule
 import { FooterComponent } from "../layout/footer/footer.component";
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-signup',
     standalone: true,
-    imports: [FormsModule, FooterComponent],
+    imports: [FormsModule, RouterModule, FooterComponent], // Agrega RouterModule aquí
     templateUrl: './signup.component.html',
-    styleUrl: './signup.component.css'
+    styleUrls: ['./signup.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })
 export class SignupComponent {
     nombre = "";
