@@ -1,26 +1,25 @@
-import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule],
+  standalone: true, // Hacerlo standalone
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  menuOpen = false;
+export class HeaderComponent implements OnInit {
+  isLoggedIn = false;
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    const storedUserData = localStorage.getItem('userProfile');
+    this.isLoggedIn = !!storedUserData;
   }
 
-  // Cierra el menú si haces clic fuera del icono o del menú
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event) {
-    const target = event.target as HTMLElement;
-    if (!target.closest('.menu') && this.menuOpen) {
-      this.menuOpen = false;
-    }
+  logout() {
+    localStorage.removeItem('userProfile');
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 }
