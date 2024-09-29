@@ -1,0 +1,22 @@
+<header>
+    <h1><a href="home" style="text-decoration: none; color: inherit;">AirCNC</a></h1>
+</header>
+
+<main>
+    <div class="login-box">
+        <h2>Iniciar Sesión</h2>
+        <form (ngSubmit)="onLogin()">
+            <input [(ngModel)]="email" id="email" type="email" class="input-text" placeholder="Email del usuario" required name="email">
+            <div class="password">
+                <input [(ngModel)]="password" id="password" type="password" class="input-text" placeholder="Contraseña"
+                    pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&\-_])[A-Za-z\d@$!%*?&\-_]{12,20}$" required
+                    title="La contraseña debe tener entre 12 y 20 caracteres, e incluir al menos una letra mayúscula, una letra minúscula, un número, y un carácter especial (ejemplo: @$!%*?&)."  name="password">
+                <button id="verPwd" type="button" (click)="togglePwdVisibilidad()">Ver contraseña</button>
+            </div>
+
+            <button type="submit" class="primary">Ingresar</button>
+        </form>
+        <a href="signup" class="secondary">Registrarse</a>
+    </div>
+</main>
+

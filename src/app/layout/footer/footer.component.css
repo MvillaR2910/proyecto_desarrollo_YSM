@@ -1,0 +1,87 @@
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons li {
+    margin: 0 10px;
+}
+
+.social-icons li a {
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.social-icons li a:hover {
+    color: #FF385C;
+}
+
+footer p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    .login-box h2 {
+        font-size: 24px;
+    }
+
+    .password input {
+        width: calc(100% - 80px); /* Ajusta el tamaño del input de contraseña en pantallas más pequeñas */
+    }
+
+    .password button {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    .login-box {
+        padding: 20px 15px;
+    }
+
+    .login-box h2 {
+        font-size: 20px;
+    }
+
+    .input-text, .primary {
+        font-size: 14px;
+    }
+
+    .secondary {
+        font-size: 12px;
+    }
+
+    .social-icons li {
+        margin: 0 5px;
+    }
+
+    .social-icons li a {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,75 @@
+<app-header></app-header>
+
+<main>
+    <!-- Hero Image Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Encuentra tu próximo hogar lejos de casa</h1>
+            <form class="search-form">
+                <input type="text" placeholder="¿A dónde vas?">
+                <input type="date" placeholder="Fecha de llegada">
+                <input type="date" placeholder="Fecha de salida">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Destinos Populares Section -->
+    <section class="popular-destinations">
+        <h2>Destinos populares</h2>
+        <div class="destinations-grid">
+
+            @for (vivienda of (obetenerViviendas()); track $index) {
+            <div class="destination">
+                <img src={{vivienda.imgUrl}} alt={{vivienda.ciudad}}>
+                <ul>
+                    <li>"País:"{{vivienda.pais}}</li>
+                    <li>"Ciudad:"{{vivienda.ciudad}}</li>
+                    <li>"direccion:"{{vivienda.direccion}}</li>
+                    <li>"precio x noche:"{{vivienda.precioNoche}}</li>
+                </ul>
+                
+            </div>
+            }@empty {
+            <li> No hay viviendas disponibles</li>
+            }
+
+        </div>
+
+    </section>
+
+    <!-- Propiedades Destacadas Section -->
+    <section class="featured-properties">
+        <h2>Propiedades destacadas</h2>
+        <div class="properties-grid">
+            @for (vivienda of (obetenerViviendas()); track $index) {
+            <div class="destination">
+                <img src={{vivienda.imgUrl}} alt={{vivienda.ciudad}}>
+                <ul>
+                    <li>"País:"{{vivienda.pais}}</li>
+                    <li>"Ciudad:"{{vivienda.ciudad}}</li>
+                    <li>"direccion:"{{vivienda.direccion}}</li>
+                    <li>"precio x noche:"{{vivienda.precioNoche}}</li>
+                </ul>
+            </div>
+            }@empty {
+            <li> No hay viviendas disponibles</li>
+            }
+
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section class="testimonials">
+        <h2>Lo que dicen nuestros huéspedes</h2>
+        <div class="testimonial">
+            <p>"¡Una experiencia increíble! La casa era hermosa y el anfitrión fue muy amable."</p>
+            <p>- Juan P.</p>
+        </div>
+        <div class="testimonial">
+            <p>"El mejor lugar en el que me he hospedado, ¡sin duda alguna!"</p>
+            <p>- María G.</p>
+        </div>
+    </section>
+</main>
+
