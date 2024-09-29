@@ -147,6 +147,15 @@ button[type="submit"]:hover {
         font-size: 14px;
     }
 
+    .password input, .confirmar-password input {
+        padding-right: 40px; /* Ajuste del tamaño del input en pantallas muy pequeñas */
+    }
+
+    .password button, .confirmar-password button {
+        font-size: 12px; /* Reducir el tamaño del texto en el botón "Ver contraseña" */
+        right: 5px; /* Ajustar posición del botón para pantallas pequeñas */
+    }
+
     .secondary {
         font-size: 12px;
     }
