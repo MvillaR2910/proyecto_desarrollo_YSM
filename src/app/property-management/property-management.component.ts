@@ -1,31 +1,21 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-property-management',
-    templateUrl: './property-management.component.html',
-    styleUrls: ['./property-management.component.css']
+  selector: 'app-property-management',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './property-management.component.html',
+  styleUrls: ['./property-management.component.css']
 })
 export class PropertyManagementComponent {
-    properties = [];
 
-    constructor() {
-        this.loadProperties();
-    }
+  propertyName: string = '';
+  propertyDescription: string = '';
 
-    loadProperties() {
-        // Cargar propiedades desde localStorage o un servicio
-        this.properties = JSON.parse(localStorage.getItem('properties') || '[]');
-    }
-
-    addProperty() {
-        // Implementar lógica para añadir propiedades
-    }
-
-    editProperty(id: number) {
-        // Implementar lógica para editar propiedades
-    }
-
-    deleteProperty(id: number) {
-        // Implementar lógica para eliminar propiedades
-    }
+  // Define la función para manejar el formulario
+  onManage() {
+    // Aquí puedes agregar la lógica para gestionar las propiedades
+    console.log('Propiedad guardada:', this.propertyName, this.propertyDescription);
+  }
 }

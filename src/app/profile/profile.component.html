@@ -1,10 +1,14 @@
 <header>
     <h1>Perfil de Usuario</h1>
 </header>
+
 <main>
     <div class="profile-box">
-        <h2>{{ nombre }}</h2>
-        <p>Email: {{ email }}</p>
-        <button (click)="editProfile()">Editar Perfil</button>
+        <h2>Mis Datos</h2>
+        <form (ngSubmit)="onUpdateProfile()">
+            <input [(ngModel)]="userName" class="input-text" placeholder="Nombre de usuario" required>
+            <input [(ngModel)]="userEmail" class="input-text" placeholder="Correo electrónico" required>
+            <button type="submit" class="primary">Actualizar</button>
+        </form>
     </div>
 </main>

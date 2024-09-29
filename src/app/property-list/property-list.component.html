@@ -1,11 +1,16 @@
-<!-- src/app/property-list/property-list.component.html -->
-<div class="property-list">
-    <h2>Lista de Propiedades</h2>
-    <ul>
-        <li *ngFor="let property of properties" (click)="someMethod(property)">
-            <h3>{{ property.title }}</h3>
-            <p>{{ property.description }}</p>
-            <p>Precio: ${{ property.price }}</p>
-        </li>
-    </ul>
-</div>
+<header>
+    <h1>Lista de Propiedades</h1>
+</header>
+
+<main>
+    <div class="property-list">
+        <h2>Todas las propiedades</h2>
+        <div class="property-card" *ngFor="let property of properties">
+            <img [src]="property.image" alt="Imagen de la propiedad">
+            <div class="property-info">
+                <h3>{{ property.name }}</h3>
+                <p>{{ property.description }}</p>
+            </div>
+        </div>
+    </div>
+</main>

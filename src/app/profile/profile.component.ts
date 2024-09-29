@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css']
+  selector: 'app-profile',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-    nombre: string = "";
-    email: string = "";
 
-    constructor() {
-        const user = JSON.parse(localStorage.getItem('user') || '{}');
-        this.nombre = user.nombre;
-        this.email = user.email;
-    }
+  userName: string = '';  // Define variables para enlazar con ngModel
+  userEmail: string = '';
 
-    editProfile() {
-        // Aquí podrías implementar la lógica para editar el perfil
-    }
+  // Define la función que se llamará al enviar el formulario
+  onUpdateProfile() {
+    // Aquí puedes agregar la lógica para actualizar el perfil
+    console.log('Perfil actualizado:', this.userName, this.userEmail);
+  }
 }
