@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,11 @@ export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   userProfile: any;
 
+  constructor(private authService: AuthService) {} // Inyectar AuthService
+
   ngOnInit() {
-    const storedUserData = localStorage.getItem('userProfile');
-    this.userProfile = storedUserData ? JSON.parse(storedUserData) : null;
-    this.isLoggedIn = !!this.userProfile; // Verifica si el usuario está logueado
+    this.userProfile = this.authService.getUser(); // Obtener usuario desde el servicio
+    this.isLoggedIn = !!this.userProfile; // Verificar si hay usuario logueado
   }
 
   toggleMenu() {
@@ -24,9 +26,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('userProfile');
-    this.isLoggedIn = false;
-    window.location.reload(); // Refresca la página para actualizar el menú
+    this.authService.logout(); // Llamar al logout del servicio
+    window.location.reload(); // Refrescar la página para actualizar el menú
   }
 
   @HostListener('document:click', ['$event'])
