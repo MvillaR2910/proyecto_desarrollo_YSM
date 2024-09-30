@@ -1,39 +1,61 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding-bottom: 100px; /* Añadido para evitar el tropezón con el footer */
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 150px); /* Ajustado para dejar espacio al footer */
+  margin-top: 20px;
+}
+
 .profile-box {
   background-color: #ffffff;
-  padding: 40px 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  max-width: 400px;
-  margin: 0 auto;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  width: 100%;
   text-align: center;
 }
 
 .profile-box h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: #333;
 }
 
 .profile-box label {
   display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
 }
 
-.profile-box input, .profile-box textarea {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.profile-box input,
+.profile-box textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
 }
 
 .profile-box button {
   background-color: #FF385C;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .profile-box button:hover {
@@ -41,14 +63,27 @@
 }
 
 .profile-preview {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .profile-preview img {
-  max-width: 100px;
+  max-width: 120px;
   border-radius: 50%;
+  margin-bottom: 15px;
 }
 
 .profile-preview p {
-  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilo para asegurar que el footer siempre esté al final */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #333;
+  color: #fff;
 }

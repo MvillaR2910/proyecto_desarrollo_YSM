@@ -2,25 +2,27 @@
   <h2>Editar Perfil de Usuario</h2>
 </header>
 
-<main>
-  <form (ngSubmit)="updateProfile()">
-    <label for="username">Nombre de Usuario:</label>
-    <input type="text" id="username" [(ngModel)]="userData.nombre" name="nombre" required>
+<main class="profile-container">
+  <div class="profile-box">
+    <form (ngSubmit)="updateProfile()">
+      <label for="username">Nombre de Usuario:</label>
+      <input type="text" id="username" [(ngModel)]="userData.nombre" name="nombre" required>
 
-    <label for="bio">Biografía:</label>
-    <textarea id="bio" [(ngModel)]="userData.bio" name="bio"></textarea>
+      <label for="bio">Biografía:</label>
+      <textarea id="bio" [(ngModel)]="userData.bio" name="bio"></textarea>
 
-    <label for="profile_picture">Foto de Perfil:</label>
-    <input type="file" (change)="onFileSelected($event)" id="profile_picture" name="profile_picture" accept="image/*">
+      <label for="profile_picture">Foto de Perfil:</label>
+      <input type="file" (change)="onFileSelected($event)" id="profile_picture" name="profile_picture" accept="image/*">
 
-    <button type="submit" class="btn">Guardar Cambios</button>
-  </form>
+      <button type="submit" class="btn">Guardar Cambios</button>
+    </form>
 
-  <div class="profile-preview">
-    <h3>Vista previa del perfil:</h3>
-    <img *ngIf="userData.profile_picture" [src]="userData.profile_picture" alt="Foto de perfil" class="profile-picture">
-    <p><strong>Nombre:</strong> {{ userData.nombre }}</p>
-    <p><strong>Email:</strong> {{ userData.email }}</p>
-    <p><strong>Biografía:</strong> {{ userData.bio }}</p>
+    <div class="profile-preview">
+      <h3>Vista previa del perfil:</h3>
+      <img *ngIf="userData.profile_picture" [src]="userData.profile_picture" alt="Foto de perfil" class="profile-picture">
+      <p><strong>Nombre:</strong> {{ userData.nombre }}</p>
+      <p><strong>Email:</strong> {{ userData.email }}</p>
+      <p><strong>Biografía:</strong> {{ userData.bio }}</p>
+    </div>
   </div>
 </main>

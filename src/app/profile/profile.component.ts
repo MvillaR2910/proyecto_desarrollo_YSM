@@ -7,8 +7,9 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls:['./profile.component.css']
 })
+
 export class ProfileComponent {
   userData = {
     nombre: '',
@@ -18,11 +19,12 @@ export class ProfileComponent {
   };
 
   ngOnInit() {
-    const storedUserData = sessionStorage.getItem('usuario');;
+    console.log("Estilos aplicados", document.styleSheets);
+    const storedUserData = sessionStorage.getItem('usuario');
     if (storedUserData) {
       this.userData = JSON.parse(storedUserData);
     }
-  }
+}
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
