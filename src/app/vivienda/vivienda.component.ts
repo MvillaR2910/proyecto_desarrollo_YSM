@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from "../layout/footer/footer.component";
 import { HeaderComponent } from "../layout/header/header.component";
+import { ViviendaService } from '../services/vivienda.service';
+import { vivienda } from '../models/property.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-vivienda',
@@ -11,36 +15,17 @@ import { HeaderComponent } from "../layout/header/header.component";
 })
 export class ViviendaComponent {
 
-  obetenerViviendas(){
 
-    return [{
-      direccion:"sasda",
-      ciudad:"París",
-      pais:"Francia",
-      imgUrl: "../images/paris.jpeg",
-      precioNoche: "641"
+  constructor(private router: Router, private viviendaService: ViviendaService) { }
 
-    },{
-      direccion:"sasda",
-      ciudad:"Tokyo",
-      pais:"Japón",
-      imgUrl: "../images/tokyo.jpeg",
-      precioNoche: "521"
-
-    },{
-      direccion:"sasda",
-      ciudad:"New York",
-      pais:"Estados Unidos",
-      imgUrl: "../images/york.jpeg",
-      precioNoche: "213"
-
-    },{
-      direccion:"Casa en la montaña",
-      ciudad:"Pig City",
-      pais:"La Marranera",
-      imgUrl: "../images/montain.jpeg",
-      precioNoche: "120"
-    }]
-
+  obetenerViviendas() {
+    return this.viviendaService.getViviendas()
   }
+  eliminarVivienda(id: number) {
+    this.viviendaService.eliminarVivienda(id)
+  }
+  actualizarVivienda(id: number) {
+    this.router.navigate(['manejar-vivienda', id]);
+  }
+
 }

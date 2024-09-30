@@ -4,3 +4,13 @@ export interface Property {
     description: string;
     price: number;
 }
+
+
+export interface vivienda {
+    id: number;
+    pais: string;
+    direccion: string;
+    ciudad: string;
+    imgUrl: string;
+    precioNoche: number;
+}

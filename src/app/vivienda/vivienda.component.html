@@ -14,6 +14,8 @@
         </div>
     </section>
 
+ 
+
     <!-- Destinos Populares Section -->
     <section class="popular-destinations">
         <h2>Destinos populares</h2>
@@ -28,7 +30,10 @@
                     <li>"direccion:"{{vivienda.direccion}}</li>
                     <li>"precio x noche:"{{vivienda.precioNoche}}</li>
                 </ul>
-                
+                <div>
+                    <button (click)="eliminarVivienda(vivienda.id)"> Eliminar</button>
+                    <button (click)="actualizarVivienda(vivienda.id)"> Actualizar</button>
+                </div>
             </div>
             }@empty {
             <li> No hay viviendas disponibles</li>
@@ -72,4 +77,3 @@
         </div>
     </section>
 </main>
-

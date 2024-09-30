@@ -1,0 +1,28 @@
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div>
+    <label for="pais">País:</label>
+    <input type="text" id="pais" [(ngModel)]="pais" name="pais" required class="input-text">
+  </div>
+
+  <div>
+    <label for="ciudad">Ciudad:</label>
+    <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" required class="input-text">
+  </div>
+
+  <div>
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" [(ngModel)]="direccion" name="direccion" required class="input-text">
+  </div>
+
+  <div>
+    <label for="imgUrl">URL de la imagen:</label>
+    <input type="text" id="imgUrl" [(ngModel)]="imgUrl" name="imgUrl" required class="input-text">
+  </div>
+
+  <div>
+    <label for="precioNoche">Precio por noche:</label>
+    <input type="number" id="precioNoche" [(ngModel)]="precioNoche" name="precioNoche" required class="input-text">
+  </div>
+
+  <button type="submit" class="primary">{{update ? "Actualizar": "Crear" }}</button>
+</form>

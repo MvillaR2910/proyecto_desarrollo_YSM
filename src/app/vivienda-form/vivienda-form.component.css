@@ -1,0 +1,49 @@
+.form-container {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto ; /* Centra el formulario */
+}
+
+.form-container label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-container input {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%; /* Hace que los inputs ocupen el 100% del contenedor */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-container input:focus {
+    border-color: #FF385C;
+    outline: none;
+}
+
+.primary {
+    padding: 12px 20px;
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.primary:hover {
+    background-color: #e02d50;
+}
+
