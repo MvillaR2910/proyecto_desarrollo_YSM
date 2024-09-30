@@ -14,11 +14,11 @@ export class HeaderComponent implements OnInit {
   isLoggedIn = false;
   userProfile: any;
 
-  constructor(private authService: AuthService) {} // Inyectar AuthService
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.userProfile = this.authService.getUser(); // Obtener usuario desde el servicio
-    this.isLoggedIn = !!this.userProfile; // Verificar si hay usuario logueado
+    this.userProfile = this.authService.getUser();
+    this.isLoggedIn = !!this.userProfile; 
   }
 
   toggleMenu() {
