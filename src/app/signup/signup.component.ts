@@ -51,6 +51,7 @@ export class SignupComponent {
 
             // Guardar datos del usuario en localStorage
             const datosUsuario = {
+                email:this.email,
                 nombre: this.nombre,
                 password: this.pwd
             };

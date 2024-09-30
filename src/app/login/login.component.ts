@@ -15,31 +15,13 @@ export class LoginComponent {
   password = '';
   passwordVisible = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
 
   onLogin() {
     try {
-      if (!this.email || !this.password) {
-        throw new Error("Todos los campos deben estar completos.");
-      }
+      this.authService.onLogin(this.email,this.password)
+      this.router.navigate(['home']);
 
-      const stringUsuario = localStorage.getItem(this.email);
-      if (!stringUsuario) {
-        throw new Error("Email o contraseña inválidos.");
-      }
-
-      const jsonUsuario = JSON.parse(stringUsuario);
-      if (this.password !== jsonUsuario.password) {
-        throw new Error("Email o contraseña inválidos.");
-      }
-
-      localStorage.setItem(this.email, JSON.stringify({
-        email: this.email, 
-        password: this.password,
-        profile_picture: 'url_de_imagen' 
-      }));
-
-      this.router.navigate(['/viviendas']);
     } catch (error: any) {
       alert(error.message);
     }

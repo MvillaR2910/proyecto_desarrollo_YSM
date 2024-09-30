@@ -4,10 +4,12 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from "./layout/header/header.component";
 import { LoggedInHeaderComponent } from './logged-in-header/logged-in-header.component'; // Verifica la ruta
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     FooterComponent,
     HeaderComponent,
@@ -28,3 +30,4 @@ export class AppComponent {
     this.cd.detectChanges();
   }
 }
+

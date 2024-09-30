@@ -18,7 +18,7 @@ export class ProfileComponent {
   };
 
   ngOnInit() {
-    const storedUserData = localStorage.getItem(this.userData.email);
+    const storedUserData = sessionStorage.getItem('usuario');;
     if (storedUserData) {
       this.userData = JSON.parse(storedUserData);
     }
@@ -35,7 +35,9 @@ export class ProfileComponent {
 
   updateProfile() {
     console.log(this.userData)
+
     localStorage.setItem(this.userData.email, JSON.stringify(this.userData));
+    sessionStorage.setItem('usuario', JSON.stringify(this.userData))
     alert('Perfil actualizado exitosamente.');
   }
 }
