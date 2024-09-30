@@ -6,11 +6,9 @@
     </ul>
     <div class="menu">
       <button (click)="toggleMenu()" class="menu-button">
-        <img *ngIf="userProfile?.profile_picture; else defaultIcon" [src]="userProfile.profile_picture" alt="Profile Picture" class="profile-picture">
-        <ng-template #defaultIcon>
-          <i class="fas fa-user"></i>
-        </ng-template>
-        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span> <!-- Mostrar el correo del usuario -->
+        <i *ngIf="!isLoggedIn" class="fas fa-user"></i> <!-- Mostrar ícono de usuario si no está logueado -->
+        <img *ngIf="isLoggedIn && userProfile?.profile_picture" [src]="userProfile.profile_picture" alt="Profile Picture" class="profile-picture">
+        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span>
       </button>
     </div>
   </nav>

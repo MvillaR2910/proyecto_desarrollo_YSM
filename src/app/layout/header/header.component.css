@@ -1,42 +1,42 @@
 /* Estilos generales del header */
 header {
   background-color: #ffffff;
-  padding: 10px 20px;
+  padding: 15px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
   display: flex;
-  justify-content: space-between; /* Cambiado para más espacio */
+  justify-content: space-between;
   align-items: center;
 }
 
 .nav-list {
   list-style: none;
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
   flex-grow: 1;
 }
 
 .nav-list li {
-  margin-right: 20px; /* Ajusta el espacio entre los elementos si es necesario */
+  margin-right: 30px; /* Más espacio entre los elementos */
 }
 
 .nav-list li:first-child a {
   color: #FF385C; /* Color del logo */
   font-weight: 700;
-  font-size: 24px;
+  font-size: 28px; /* Aumenta tamaño del logo */
 }
 
 .nav-list li a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  font-size: 16px; /* Cambiado a un tamaño más pequeño */
+  font-size: 18px; /* Un poco más grande el tamaño del texto */
 }
 
 .nav-list li a:hover {
@@ -46,41 +46,39 @@ header {
 /* Menú del muñeco */
 .menu {
   position: absolute;
-  padding-right: 30px;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  display: flex; /* Añadir display flex */
-  align-items: center; /* Alinear elementos verticalmente */
+  display: flex;
+  align-items: center;
 }
 
 .menu-button {
-  background-color: transparent;
   border: none;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
   cursor: pointer;
-  font-size: 24px;
   color: #333;
 }
 
 .menu-button span {
-  margin-left: 10px; /* Añadir espacio entre el ícono y el nombre */
-  font-size: 16px; /* Cambiar el tamaño de la fuente si es necesario */
+  font-size: 20px; /* Tamaño mayor para el nombre */
+  font-weight: bold;
+  padding-right: 25px;
 }
 
-
 .profile-picture {
-  width: 25px; /* Cambia el tamaño según lo necesites */
-  height: 25px; /* Cambia el tamaño según lo necesites */
-  border-radius: 50%; /* Para hacer la imagen redonda */
-  margin-right: 5px; /* Espacio entre la imagen y el texto */
+  width: 40px; /* Tamaño más grande del ícono */
+  height: 40px;
+  border-radius: 50%;
 }
 
 .menu-button i {
-  font-size: 24px;
+  font-size: 20px; /* Ícono un poco más grande */
   color: #333;
 }
 
-/* Estilos del menú lateral */
 .side-menu {
   position: fixed;
   top: 0;
@@ -103,8 +101,8 @@ header {
 }
 
 .dropdown-menu li {
-  padding: 10px 16px;
-  font-size: 16px;
+  padding: 12px 16px;
+  font-size: 18px;
 }
 
 .dropdown-menu li a {
