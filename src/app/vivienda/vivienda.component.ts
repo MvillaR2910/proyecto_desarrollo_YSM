@@ -20,6 +20,8 @@ export class ViviendaComponent {
   minPrecio = 0
   habitaciones = 0
   viviendas: Vivienda[] = []
+  ordenar = ["Precio","Habitaciones"]
+  seleccion = null
 
   constructor(private router: Router, private viviendaService: ViviendaService) {
     this.viviendas = this.viviendaService.getViviendas()
@@ -33,8 +35,8 @@ export class ViviendaComponent {
     return this.viviendas.slice(0, 2)
   }
 
-  buscarViviendas(event: Event) {
-    this.viviendas = this.viviendaService.buscarVivienda(this.query, this.minPrecio,this.maxPrecio == 0 ? Number.MAX_VALUE : this.maxPrecio,  this.habitaciones)
+  buscarViviendas() {
+    this.viviendas = this.viviendaService.buscarVivienda(this.query, this.minPrecio,this.maxPrecio == 0 ? Number.MAX_VALUE : this.maxPrecio,  this.habitaciones, this.seleccion)
   }
   obetenerViviendas() {
     return this.viviendas

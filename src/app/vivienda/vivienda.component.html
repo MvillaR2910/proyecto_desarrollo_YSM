@@ -5,7 +5,19 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Encuentra tu próximo hogar lejos de casa</h1>
-            <form (submit)="buscarViviendas($event)" class="search-form">
+            <form (submit)="buscarViviendas()" class="search-form">
+                
+                
+                <div class="form-group">
+                    <label for="elementos">En orden de:</label>
+                    <select id="elementos" [(ngModel)] = "seleccion" name="seleccion">
+                        <option disabled selected>Seleccione una opción</option>
+                        @for (elemento of ordenar; track $index) {
+                            <option [value]="elemento">{{elemento}}</option>
+                        }
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label for="query">Destino</label>
                     <input [(ngModel)]="query" name="query" type="text" placeholder="¿A dónde vas?">

@@ -125,6 +125,13 @@ main {
     border: none;
     border-radius: 5px;
 }
+.form-group select {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
 
 .search-form button {
     padding: 10px 20px;

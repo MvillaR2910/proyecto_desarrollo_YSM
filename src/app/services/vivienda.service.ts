@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Vivienda } from '../models/property.model';
+import { Ordenar, Vivienda } from '../models/property.model';
 
 
 @Injectable({
@@ -137,8 +137,9 @@ export class ViviendaService {
     localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
   }
 
-  buscarVivienda(query: string, minPrecio: number, maxPrecio: number, habitaciones: number): Vivienda[] {
-    return this.viviendas.filter(vivienda => {
+  buscarVivienda(query: string, minPrecio: number, maxPrecio: number, habitaciones: number, ordenar: Ordenar | null): Vivienda[] {
+
+    const filtroVivendas = this.viviendas.filter(vivienda => {
       // Comprobar que coincida con la dirección, ciudad o país
       const coincideDireccion = query ? vivienda.direccion.toLowerCase().includes(query.toLowerCase()) : true;
       const coincideCiudad = query ? vivienda.ciudad.toLowerCase().includes(query.toLowerCase()) : true;
@@ -146,15 +147,25 @@ export class ViviendaService {
 
       // Verificar que la vivienda esté dentro del rango de precios
       const coincidePrecio = vivienda.precioNoche >= minPrecio && vivienda.precioNoche <= maxPrecio;
-      console.log(minPrecio, maxPrecio);
-      
+
       // Verificar que el número de habitaciones coincida
       const coincideHabitaciones = vivienda.habitaciones >= habitaciones;
-      console.log(coincidePrecio,coincideHabitaciones);
+
 
       // Solo devolver las viviendas que cumplan con todos los criterios
-      return (coincideDireccion || coincideCiudad || coincidePais)&& coincidePrecio && coincideHabitaciones;
+      return (coincideDireccion || coincideCiudad || coincidePais) && coincidePrecio && coincideHabitaciones;
     });
+
+    return this.ordenarViviendas(filtroVivendas, ordenar)
+
+  }
+
+  ordenarViviendas(viviendas: Vivienda[], ordenar: Ordenar | null): Vivienda[] {
+    if (ordenar != null) {
+      ordenar === "Precio" ? viviendas.sort((a, b) => a.precioNoche - b.precioNoche) : null
+      ordenar === "Habitaciones" ? viviendas.sort((a, b) => a.habitaciones - b.habitaciones) : null
+    }
+    return viviendas
   }
 
 }

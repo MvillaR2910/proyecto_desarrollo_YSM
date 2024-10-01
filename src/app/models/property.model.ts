@@ -8,7 +8,7 @@ export interface Property {
 interface Reserva {
     fechaInicio: string;  // Formato de fecha 'YYYY-MM-DD'
     fechaFin: string;     // Formato de fecha 'YYYY-MM-DD'
-  }
+}
 
 export interface Vivienda {
 
@@ -23,7 +23,9 @@ export interface Vivienda {
     banos: number;
     capacidadMaxima: number;
     fotos: string[];
-    reservas:Reserva[]
+    reservas: Reserva[]
 
 
 }
+
+export type Ordenar = "Precio"|"Habitaciones"
