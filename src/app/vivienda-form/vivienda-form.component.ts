@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViviendaService } from '../services/vivienda.service';
-import { vivienda } from '../models/property.model';
+import { Vivienda } from '../models/property.model';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,60 +12,66 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './vivienda-form.component.css'
 })
 export class ViviendaFormComponent {
-  id = 0
-  pais = "";
-  direccion = "";
-  ciudad = "";
-  imgUrl = "";
-  precioNoche = 0;
-  update=false
+  vivienda: Vivienda
+  update: boolean
 
-  constructor(private viviendaService: ViviendaService, private route: ActivatedRoute) {}
-
+  constructor(private viviendaService: ViviendaService, private route: ActivatedRoute) {
+    this.vivienda = {
+      id: 0,
+      titulo: "",
+      descripcion: "",
+      pais: "",
+      ciudad: "",
+      direccion: "",
+      precioNoche: 0,
+      numeroDeHabitaciones: 0,
+      banos: 0,
+      capacidadMaxima: 0,
+      fotos: [],
+      reservas: []
+    };
+    this.update = false
+  }
   ngOnInit() {
     // Verifica si viene un id en la ruta
     this.route.paramMap.subscribe(params => {
-      if (params.get("id")){
+      if (params.get("id")) {
         const vivienda = this.viviendaService.getViviendaById(Number(params.get("id")));
         if (vivienda) {
-          this.id = Number(params.get("id"))
-          this.pais = vivienda.pais;
-          this.direccion = vivienda.direccion;
-          this.ciudad = vivienda.ciudad;
-          this.imgUrl = vivienda.imgUrl;
-          this.precioNoche = vivienda.precioNoche;
+          this.vivienda = vivienda
           this.update = true
         }
-      }      
+      }
 
     });
   }
 
 
   onSubmit(): void {
-
-    const vivienda: vivienda = {
-      id: this.id,
-      pais: this.pais,
-      direccion: this.direccion,
-      ciudad: this.ciudad,
-      imgUrl: this.imgUrl,
-      precioNoche: this.precioNoche
-    }
-
     if (this.update) {
-      this.actualizarVivienda(vivienda.id,vivienda);
+      this.actualizarVivienda(this.vivienda.id, this.vivienda);
     } else {
-      this.crearVivienda(vivienda);
+      this.crearVivienda(this.vivienda);
     }
   }
 
-  crearVivienda(vivienda:vivienda): void {
+
+   // Método para agregar una nueva foto
+   agregarFoto() {
+    this.vivienda.fotos.push(''); // Agregar un nuevo campo vacío para la foto
+  }
+
+  // Método para eliminar una foto
+  eliminarFoto(index: number) {
+    this.vivienda.fotos.splice(index, 1); // Eliminar la foto en el índice especificado
+  }
+
+  crearVivienda(vivienda: Vivienda): void {
     this.viviendaService.crearVivienda(vivienda)
   }
-  
-  actualizarVivienda(id:number,vivienda:vivienda): void {
-    
-    this.viviendaService.actualizarVivienda(id,vivienda)
+
+  actualizarVivienda(id: number, vivienda: Vivienda): void {
+
+    this.viviendaService.actualizarVivienda(id, vivienda)
   }
 }

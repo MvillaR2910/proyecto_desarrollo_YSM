@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FooterComponent } from "../layout/footer/footer.component";
 import { HeaderComponent } from "../layout/header/header.component";
 import { ViviendaService } from '../services/vivienda.service';
-import { vivienda } from '../models/property.model';
+import { Vivienda } from '../models/property.model';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -16,19 +16,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class ViviendaComponent {
   query = ""
-  viviendas: vivienda[] = []
+  viviendas: Vivienda[] = []
+
   constructor(private router: Router, private viviendaService: ViviendaService) {
     this.viviendas = this.viviendaService.getViviendas()
-   }
+  }
 
+
+  verDetalles(id: number) {
+    this.router.navigate(['/vivienda', id]); // Navega a la ruta de detalles
+
+  }
   viviendasDestacadas() {
-    return this.viviendaService.getViviendas()
+    return this.viviendas.slice(1, 3)
   }
 
   buscarViviendas(event: Event) {
     this.viviendas = this.viviendaService.buscarVivienda(this.query)
   }
-  obetenerViviendas(){
+  obetenerViviendas() {
     return this.viviendas
   }
 

@@ -1,0 +1,29 @@
+@if (vivienda !== null) {
+
+
+<div class="destination" >
+    <!-- Imagen principal -->
+    <img src="{{vivienda.fotos[0]}}" alt="{{vivienda.ciudad}}">
+
+    <!-- Información detallada -->
+    <ul>
+        <li>País: {{vivienda.pais}}</li>
+        <li>Ciudad: {{vivienda.ciudad}}</li>
+        <li>Dirección: {{vivienda.direccion}}</li>
+        <li>Precio por noche: {{vivienda.precioNoche}}</li>
+        <li>Número de habitaciones: {{vivienda.numeroDeHabitaciones}}</li>
+        <li>Baños: {{vivienda.banos}}</li>
+        <li>Capacidad máxima: {{vivienda.capacidadMaxima}}</li>
+        <li>Descripción: {{vivienda.descripcion}}</li>
+    </ul>
+
+    <!-- Galería de fotos adicionales -->
+    <div class="gallery">
+        <h3>Fotos adicionales:</h3>
+        <img *ngFor="let foto of vivienda.fotos; let i = index" [src]="foto" [alt]="'Foto ' + (i + 1)">
+    </div>
+
+</div>
+}@else {
+    <h1>Vivienda no encontrada</h1>
+}

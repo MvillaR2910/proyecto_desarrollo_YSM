@@ -14,38 +14,53 @@
         </div>
     </section>
 
- 
+
 
     <!-- Destinos Populares Section -->
     <section class="popular-destinations">
         <h2>Destinos populares</h2>
         @for (vivienda of (obetenerViviendas()); track $index) {
-            <div class="destination">
-                <img src={{vivienda.imgUrl}} alt={{vivienda.ciudad}}>
-                <ul>
-                    <li>"País:"{{vivienda.pais}}</li>
-                    <li>"Ciudad:"{{vivienda.ciudad}}</li>
-                    <li>"direccion:"{{vivienda.direccion}}</li>
-                    <li>"precio x noche:"{{vivienda.precioNoche}}</li>
-                </ul>
-                <div>
-                    <button (click)="eliminarVivienda(vivienda.id)"> Eliminar</button>
-                    <button (click)="actualizarVivienda(vivienda.id)"> Actualizar</button>
-                </div>
+        <div class="destination" (click)="verDetalles(vivienda.id)">
+            <!-- Imagen principal -->
+            <img src="{{vivienda.fotos[0]}}" alt="{{vivienda.ciudad}}">
+
+            <!-- Información detallada -->
+            <ul>
+                <li>País: {{vivienda.pais}}</li>
+                <li>Ciudad: {{vivienda.ciudad}}</li>
+                <li>Dirección: {{vivienda.direccion}}</li>
+                <li>Precio por noche: {{vivienda.precioNoche}}</li>
+                <li>Número de habitaciones: {{vivienda.numeroDeHabitaciones}}</li>
+                <li>Baños: {{vivienda.banos}}</li>
+                <li>Capacidad máxima: {{vivienda.capacidadMaxima}}</li>
+                <li>Descripción: {{vivienda.descripcion}}</li>
+            </ul>
+
+            <!-- Galería de fotos adicionales
+            <div class="gallery">
+                <h3>Fotos adicionales:</h3>
+                <img *ngFor="let foto of vivienda.fotos; let i = index" [src]="foto" [alt]="'Foto ' + (i + 1)">
+            </div> -->
+
+            <!-- Botones de acciones -->
+            <div>
+                <button (click)="eliminarVivienda(vivienda.id)">Eliminar</button>
+                <button (click)="actualizarVivienda(vivienda.id)">Actualizar</button>
             </div>
-            }@empty {
-            <li> No hay viviendas disponibles</li>
-            }
+        </div>
+        }@empty {
+        <li> No hay viviendas disponibles</li>
+        }
 
     </section>
 
     <!-- Propiedades Destacadas Section -->
     <section class="featured-properties">
         <h2>Propiedades destacadas</h2>
-        <div class="properties-grid">
+        <div class="properties-grid" >
             @for (vivienda of (viviendasDestacadas()); track $index) {
-            <div class="destination">
-                <img src={{vivienda.imgUrl}} alt={{vivienda.ciudad}}>
+            <div class="destination" (click)="verDetalles(vivienda.id)">
+                <img src={{vivienda.fotos[0]}} alt={{vivienda.ciudad}}>
                 <ul>
                     <li>"País:"{{vivienda.pais}}</li>
                     <li>"Ciudad:"{{vivienda.ciudad}}</li>

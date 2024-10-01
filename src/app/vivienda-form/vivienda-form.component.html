@@ -1,28 +1,63 @@
-<form (ngSubmit)="onSubmit()" class="form-container">
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="titulo">Título:</label>
+    <input type="text" [(ngModel)]="vivienda.titulo" name="titulo" required>
+  </div>
+
+  <div>
+    <label for="descripcion">Descripción:</label>
+    <input type="text" [(ngModel)]="vivienda.descripcion" name="descripcion" required>
+  </div>
+
   <div>
     <label for="pais">País:</label>
-    <input type="text" id="pais" [(ngModel)]="pais" name="pais" required class="input-text">
+    <input type="text" [(ngModel)]="vivienda.pais" name="pais" required>
   </div>
 
   <div>
     <label for="ciudad">Ciudad:</label>
-    <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" required class="input-text">
+    <input type="text" [(ngModel)]="vivienda.ciudad" name="ciudad" required>
   </div>
 
   <div>
     <label for="direccion">Dirección:</label>
-    <input type="text" id="direccion" [(ngModel)]="direccion" name="direccion" required class="input-text">
+    <input type="text" [(ngModel)]="vivienda.direccion" name="direccion" required>
   </div>
 
   <div>
-    <label for="imgUrl">URL de la imagen:</label>
-    <input type="text" id="imgUrl" [(ngModel)]="imgUrl" name="imgUrl" required class="input-text">
+    <label for="precioNoche">Precio por Noche:</label>
+    <input type="number" [(ngModel)]="vivienda.precioNoche" name="precioNoche" required>
   </div>
 
   <div>
-    <label for="precioNoche">Precio por noche:</label>
-    <input type="number" id="precioNoche" [(ngModel)]="precioNoche" name="precioNoche" required class="input-text">
+    <label for="numeroDeHabitaciones">Número de Habitaciones:</label>
+    <input type="number" [(ngModel)]="vivienda.numeroDeHabitaciones" name="numeroDeHabitaciones" required>
   </div>
 
-  <button type="submit" class="primary">{{update ? "Actualizar": "Crear" }}</button>
+  <div>
+    <label for="banos">Baños:</label>
+    <input type="number" [(ngModel)]="vivienda.banos" name="banos" required>
+  </div>
+
+  <div>
+    <label for="capacidadMaxima">Capacidad Máxima:</label>
+    <input type="number" [(ngModel)]="vivienda.capacidadMaxima" name="capacidadMaxima" required>
+  </div>
+
+  <div>
+    <label>Fotos:</label>
+    @for (foto of vivienda.fotos; track $index) {
+
+      <div >
+        <input type="text" [(ngModel)]="vivienda.fotos[$index]" name="foto{{$index}}" placeholder="URL de la foto">
+        <button type="button" (click)="eliminarFoto($index)">Eliminar</button>
+      </div>
+    }@empty {
+      <li> No hay imágenes</li>
+    }
+    <button type="button" (click)="agregarFoto()">Agregar Foto</button>
+
+  </div>
+
+  <button type="submit">Guardar Vivienda</button>
 </form>

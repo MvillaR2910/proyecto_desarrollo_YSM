@@ -1,49 +1,105 @@
 import { Injectable } from '@angular/core';
-import { vivienda } from '../models/property.model';
+import { Vivienda } from '../models/property.model';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ViviendaService {
-    private viviendas: vivienda[]
+    private viviendas: Vivienda[]
     private keyName: string
     constructor() {
         this.keyName = "viviendas"
         const vivienda = localStorage.getItem(this.keyName)
         if (!vivienda) {
-            this.viviendas = [{
-                id: 1,
-                direccion: "sasda",
-                ciudad: "París",
-                pais: "Francia",
-                imgUrl: "../images/paris.jpeg",
-                precioNoche: 641
-
-            }, {
-                id: 2,
-                direccion: "sasda",
-                ciudad: "Tokyo",
-                pais: "Japón",
-                imgUrl: "../images/tokyo.jpeg",
-                precioNoche: 521
-
-            }, {
-                id: 3,
-                direccion: "sasda",
-                ciudad: "New York",
-                pais: "Estados Unidos",
-                imgUrl: "../images/york.jpeg",
-                precioNoche: 213
-
-            }, {
-                id: 4,
-                direccion: "Casa en la montaña",
-                ciudad: "Pig City",
-                pais: "La Marranera",
-                imgUrl: "../images/montain.jpeg",
-                precioNoche: 120
-            }]
+            this.viviendas =[
+                {
+                  "id": 1,
+                  "titulo": "Apartamento en el centro",
+                  "descripcion": "Un acogedor apartamento en el centro de la ciudad.",
+                  "pais": "Colombia",
+                  "ciudad": "Bogota",
+                  "direccion": "Calle 10 #5-30",
+                  "precioNoche": 100,
+                  "numeroDeHabitaciones": 2,
+                  "banos": 1,
+                  "capacidadMaxima": 4,
+                  "fotos": ["foto1.jpg", "foto2.jpg"],
+                  "reservas": [
+                    {
+                      "fechaInicio": "2024-10-01",
+                      "fechaFin": "2024-10-05"
+                    },
+                    {
+                      "fechaInicio": "2024-10-10",
+                      "fechaFin": "2024-10-15"
+                    }
+                  ]
+                },
+                {
+                  "id": 2,
+                  "titulo": "Casa de campo",
+                  "descripcion": "Hermosa casa de campo con vistas a las montanas.",
+                  "pais": "Colombia",
+                  "ciudad": "Medellin",
+                  "direccion": "Vereda El Salado",
+                  "precioNoche": 200,
+                  "numeroDeHabitaciones": 3,
+                  "banos": 2,
+                  "capacidadMaxima": 6,
+                  "fotos": ["foto3.jpg", "foto4.jpg"],
+                  "reservas": [
+                    {
+                      "fechaInicio": "2024-11-01",
+                      "fechaFin": "2024-11-07"
+                    }
+                  ]
+                },
+                {
+                  "id": 3,
+                  "titulo": "Loft moderno",
+                  "descripcion": "Un loft moderno en una ubicacion exclusiva.",
+                  "pais": "Colombia",
+                  "ciudad": "Cali",
+                  "direccion": "Avenida Roosevelt #25-50",
+                  "precioNoche": 150,
+                  "numeroDeHabitaciones": 1,
+                  "banos": 1,
+                  "capacidadMaxima": 2,
+                  "fotos": ["foto5.jpg", "foto6.jpg"],
+                  "reservas": [
+                    {
+                      "fechaInicio": "2024-12-15",
+                      "fechaFin": "2024-12-20"
+                    }
+                  ]
+                },
+                {
+                  "id": 4,
+                  "titulo": "Villa frente al mar",
+                  "descripcion": "Villa de lujo frente al mar con piscina privada.",
+                  "pais": "Colombia",
+                  "ciudad": "Cartagena",
+                  "direccion": "Isla Baru, Sector Playa Blanca",
+                  "precioNoche": 500,
+                  "numeroDeHabitaciones": 4,
+                  "banos": 3,
+                  "capacidadMaxima": 10,
+                  "fotos": ["foto7.jpg", "foto8.jpg"],
+                  "reservas": [
+                    {
+                      "fechaInicio": "2024-09-25",
+                      "fechaFin": "2024-09-30"
+                    },
+                    {
+                      "fechaInicio": "2024-10-20",
+                      "fechaFin": "2024-10-25"
+                    }
+                  ]
+                }
+              ]
+              
+              
             localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
         } else {
             this.viviendas = JSON.parse(vivienda)
@@ -51,15 +107,15 @@ export class ViviendaService {
 
     }
 
-    getViviendas(): vivienda[] {
+    getViviendas(): Vivienda[] {
         return this.viviendas
     }
 
-    getViviendaById(id: number): vivienda | undefined {
+    getViviendaById(id: number): Vivienda | undefined {
         return this.viviendas.find((vivienda) => vivienda.id == id)
     }
 
-    crearVivienda(vivienda: vivienda): void {
+    crearVivienda(vivienda: Vivienda): void {
         vivienda.id = this.viviendas[this.viviendas.length-1].id+1
         this.viviendas.push(vivienda)
         localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
@@ -70,7 +126,7 @@ export class ViviendaService {
         localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
     }
 
-    actualizarVivienda(id: number, vivienda: vivienda) {
+    actualizarVivienda(id: number, vivienda: Vivienda) {
         
         this.viviendas = this.viviendas.map(v => {
             if (v.id === id) {
@@ -81,7 +137,7 @@ export class ViviendaService {
         localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
     }
 
-    buscarVivienda(query: string): vivienda[] {
+    buscarVivienda(query: string): Vivienda[] {
         return this.viviendas.filter(vivienda => {
 
             const coincideDireccion = query ? vivienda.direccion.toLowerCase().includes(query.toLowerCase()) : true;
