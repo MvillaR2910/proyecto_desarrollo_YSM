@@ -6,9 +6,37 @@
         <div class="hero-content">
             <h1>Encuentra tu próximo hogar lejos de casa</h1>
             <form (submit)="buscarViviendas($event)" class="search-form">
-                <input [(ngModel)]="query" name="query" type="text" placeholder="¿A dónde vas?">
-                <input type="date" placeholder="Fecha de llegada">
-                <input type="date" placeholder="Fecha de salida">
+                <div class="form-group">
+                    <label for="query">Destino</label>
+                    <input [(ngModel)]="query" name="query" type="text" placeholder="¿A dónde vas?">
+                </div>
+    
+                <div class="form-group">
+                    <label for="minPrecio">Precio mínimo por noche</label>
+                    <input [(ngModel)]="minPrecio" id="minPrecio" name="minPrecio" type="number">
+                </div>
+    
+                <div class="form-group">
+                    <label for="maxPrecio">Precio máximo por noche</label>
+                    <input [(ngModel)]="maxPrecio" id="maxPrecio" name="maxPrecio" type="number">
+                </div>
+    
+                <div class="form-group">
+                    <label for="habitaciones">Cantidad de habitaciones</label>
+                    <input [(ngModel)]="habitaciones" id="habitaciones" name="habitaciones" type="number"
+                        placeholder="Número de habitaciones">
+                </div>
+    
+                <div class="form-group">
+                    <label for="fechaLlegada">Fecha de llegada</label>
+                    <input type="date" name="fechaLlegada" placeholder="Fecha de llegada">
+                </div>
+    
+                <div class="form-group">
+                    <label for="fechaSalida">Fecha de salida</label>
+                    <input type="date" name="fechaSalida" placeholder="Fecha de salida">
+                </div>
+    
                 <button type="submit">Buscar</button>
             </form>
         </div>
@@ -30,7 +58,7 @@
                 <li>Ciudad: {{vivienda.ciudad}}</li>
                 <li>Dirección: {{vivienda.direccion}}</li>
                 <li>Precio por noche: {{vivienda.precioNoche}}</li>
-                <li>Número de habitaciones: {{vivienda.numeroDeHabitaciones}}</li>
+                <li>Número de habitaciones: {{vivienda.habitaciones}}</li>
                 <li>Baños: {{vivienda.banos}}</li>
                 <li>Capacidad máxima: {{vivienda.capacidadMaxima}}</li>
                 <li>Descripción: {{vivienda.descripcion}}</li>
@@ -57,7 +85,7 @@
     <!-- Propiedades Destacadas Section -->
     <section class="featured-properties">
         <h2>Propiedades destacadas</h2>
-        <div class="properties-grid" >
+        <div class="properties-grid">
             @for (vivienda of (viviendasDestacadas()); track $index) {
             <div class="destination" (click)="verDetalles(vivienda.id)">
                 <img src={{vivienda.fotos[0]}} alt={{vivienda.ciudad}}>

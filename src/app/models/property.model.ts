@@ -19,7 +19,7 @@ export interface Vivienda {
     ciudad: string;
     direccion: string;
     precioNoche: number;
-    numeroDeHabitaciones: number;
+    habitaciones: number;
     banos: number;
     capacidadMaxima: number;
     fotos: string[];

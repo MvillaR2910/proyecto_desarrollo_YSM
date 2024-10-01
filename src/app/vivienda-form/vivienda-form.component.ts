@@ -24,7 +24,7 @@ export class ViviendaFormComponent {
       ciudad: "",
       direccion: "",
       precioNoche: 0,
-      numeroDeHabitaciones: 0,
+      habitaciones: 0,
       banos: 0,
       capacidadMaxima: 0,
       fotos: [],

@@ -16,23 +16,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class ViviendaComponent {
   query = ""
+  maxPrecio = 0
+  minPrecio = 0
+  habitaciones = 0
   viviendas: Vivienda[] = []
 
   constructor(private router: Router, private viviendaService: ViviendaService) {
     this.viviendas = this.viviendaService.getViviendas()
   }
 
-
   verDetalles(id: number) {
-    this.router.navigate(['/vivienda', id]); // Navega a la ruta de detalles
-
+    this.router.navigate(['/vivienda', id]);
   }
+
   viviendasDestacadas() {
-    return this.viviendas.slice(1, 3)
+    return this.viviendas.slice(0, 2)
   }
 
   buscarViviendas(event: Event) {
-    this.viviendas = this.viviendaService.buscarVivienda(this.query)
+    this.viviendas = this.viviendaService.buscarVivienda(this.query, this.minPrecio,this.maxPrecio == 0 ? Number.MAX_VALUE : this.maxPrecio,  this.habitaciones)
   }
   obetenerViviendas() {
     return this.viviendas
