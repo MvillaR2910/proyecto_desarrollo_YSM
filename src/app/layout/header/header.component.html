@@ -8,7 +8,7 @@
       <button (click)="toggleMenu()" class="menu-button">
         <i *ngIf="!isLoggedIn" class="fas fa-user"></i> <!-- Mostrar ícono de usuario si no está logueado -->
         <img *ngIf="isLoggedIn && userProfile?.profile_picture" [src]="userProfile.profile_picture" alt="Profile Picture" class="profile-picture">
-        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span>
+        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span> <!-- Mostrar correo si está logueado -->
       </button>
     </div>
   </nav>
