@@ -25,9 +25,15 @@ export class AppComponent {
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    const storedUserData = localStorage.getItem('userProfile');
+    const storedUserData = sessionStorage.getItem('usuario');
+    this.isLoggedIn = !!storedUserData; // Verifica si hay datos en sessionStorage
+    this.cd.detectChanges(); // Asegura que los cambios se reflejen
+  }
+
+  // Método para actualizar el estado de inicio de sesión
+  updateLoginStatus() {
+    const storedUserData = sessionStorage.getItem('usuario');
     this.isLoggedIn = !!storedUserData;
     this.cd.detectChanges();
   }
 }
-

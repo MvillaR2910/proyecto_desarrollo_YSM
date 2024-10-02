@@ -17,15 +17,15 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    const storedUser = this.authService.getUser();
-    console.log(storedUser); // Verificar si los datos se están obteniendo correctamente
-    if (storedUser) {
-      this.userProfile = JSON.parse(storedUser);
-      this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
-    }
+  const storedUser = this.authService.getUser();  // Este ya es un objeto JSON
+  if (storedUser) {
+    this.userProfile = storedUser;  // Asignamos directamente el objeto JSON
+    this.isLoggedIn = true;
+  } else {
+    this.isLoggedIn = false;
   }
+}
+
   
   toggleMenu() {
     this.menuOpen = !this.menuOpen;

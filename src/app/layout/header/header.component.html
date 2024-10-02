@@ -1,24 +1,17 @@
 <header>
-  <nav>
+  <nav class="header-nav">
     <ul class="nav-list">
       <li><a href="/">AirCNC</a></li>
       <li><a href="/home">Propiedades</a></li>
     </ul>
     <div class="menu">
-      <button (click)="toggleMenu()" class="menu-button">
-        <i *ngIf="!isLoggedIn" class="fas fa-user"></i> <!-- Mostrar ícono de usuario si no está logueado -->
-        <img *ngIf="isLoggedIn && userProfile?.profile_picture" [src]="userProfile.profile_picture" alt="Profile Picture" class="profile-picture">
-        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span> <!-- Mostrar correo si está logueado -->
+      <button class="menu-button">
+        <span *ngIf="!isLoggedIn">
+          <a href="/login">Iniciar sesión</a> | 
+          <a href="/signup">Registrar</a>
+        </span>
+        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span>
       </button>
     </div>
   </nav>
-
-  <div class="side-menu" [class.open]="menuOpen">
-    <ul class="dropdown-menu">
-      <li *ngIf="!isLoggedIn"><a href="/signup">Regístrate</a></li>
-      <li *ngIf="!isLoggedIn"><a href="/login">Inicia sesión</a></li>
-      <li *ngIf="isLoggedIn"><a href="/profile">Editar Perfil</a></li>
-      <li *ngIf="isLoggedIn" (click)="logout()">Cerrar sesión</li>
-    </ul>
-  </div>
 </header>

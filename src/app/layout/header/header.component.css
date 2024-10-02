@@ -8,47 +8,43 @@ header {
   top: 0;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Alinear a los extremos */
   align-items: center;
 }
 
+/* Lista de navegación */
 .nav-list {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Alinear hacia la izquierda */
   align-items: center;
   margin: 0;
   padding: 0;
-  flex-grow: 1;
 }
 
 .nav-list li {
-  margin-right: 30px; /* Más espacio entre los elementos */
+  margin-right: 30px;
 }
 
 .nav-list li:first-child a {
-  color: #FF385C; /* Color del logo */
+  color: #FF385C;
   font-weight: 700;
-  font-size: 28px; /* Aumenta tamaño del logo */
+  font-size: 28px;
 }
 
 .nav-list li a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  font-size: 18px; /* Un poco más grande el tamaño del texto */
+  font-size: 18px;
 }
 
 .nav-list li a:hover {
   color: #FF385C;
 }
 
-/* Menú del muñeco */
+/* Menú de sesión */
 .menu {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
 }
@@ -56,33 +52,31 @@ header {
 .menu-button {
   border: none;
   background-color: transparent;
-  height: 100%;
-  width: 100%;
   cursor: pointer;
   color: #333;
+  font-size: 16px;
+}
+
+.menu-button a {
+  text-decoration: none;
+  color: #333;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.menu-button a:hover {
+  color: #FF385C;
 }
 
 .menu-button span {
-  font-size: 20px; /* Tamaño mayor para el nombre */
-  font-weight: bold;
-  padding-right: 25px;
-}
-
-.profile-picture {
-  width: 40px; /* Tamaño más grande del ícono */
-  height: 40px;
-  border-radius: 50%;
-}
-
-.menu-button i {
-  font-size: 20px; /* Ícono un poco más grande */
-  color: #333;
+  margin-right: 10px;
+  font-size: 18px;
 }
 
 .side-menu {
   position: fixed;
   top: 0;
-  right: -300px; /* Empieza fuera de la vista */
+  right: -300px;
   width: 300px;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.95);
@@ -92,7 +86,7 @@ header {
 }
 
 .side-menu.open {
-  right: 0; /* Mueve el menú dentro de la vista */
+  right: 0;
 }
 
 .dropdown-menu {
@@ -114,3 +108,5 @@ header {
 .dropdown-menu li:hover {
   background-color: #f1f1f1;
 }
+
+  
