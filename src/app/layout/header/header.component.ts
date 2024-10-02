@@ -17,25 +17,25 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    // Obtener el usuario del servicio, pero debemos convertir el string del sessionStorage a JSON
     const storedUser = this.authService.getUser();
+    console.log(storedUser); // Verificar si los datos se están obteniendo correctamente
     if (storedUser) {
-      this.userProfile = JSON.parse(storedUser); // Parseamos el string
-      this.isLoggedIn = true; // Si hay usuario, marcamos como logueado
+      this.userProfile = JSON.parse(storedUser);
+      this.isLoggedIn = true;
     } else {
-      this.isLoggedIn = false; // Si no hay usuario, no está logueado
+      this.isLoggedIn = false;
     }
   }
-
+  
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
   logout() {
-    this.authService.logout(); // Usar el método logout del AuthService
-    window.location.reload(); // Refresca la página para actualizar el menú
+    this.authService.logout();
+    window.location.reload(); // Recargar para actualizar el estado visual
   }
-
+  
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const target = event.target as HTMLElement;
