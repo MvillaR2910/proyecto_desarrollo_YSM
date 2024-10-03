@@ -20,20 +20,21 @@ header {
 }
 
 .nav-list li {
-  margin-right: 30px;
+  margin-right: 50px;
+  padding-top: 5px;
 }
 
 .nav-list li:first-child a {
   color: #FF385C;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 50px;
 }
 
 .nav-list li a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .nav-list li a:hover {
@@ -41,9 +42,9 @@ header {
 }
 
 .menu {
-  position: relative;
   display: flex;
   align-items: center;
+  margin-left: 480%; /* Agrega esto para empujar el botón hacia la derecha */
 }
 
 .menu-button {
@@ -51,10 +52,11 @@ header {
   background-color: transparent;
   cursor: pointer;
   color: #333;
+  margin-left: auto;
 }
 
 .menu-button i {
-  font-size: 24px;
+  font-size: 55px;
   color: #333;
 }
 
