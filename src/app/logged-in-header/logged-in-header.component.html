@@ -1,1 +1,11 @@
-<app-logged-in-header *ngIf="isLoggedIn"></app-logged-in-header>
+<header>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="/">AirCNC</a></li>
+        <li><a href="/viviendas">Propiedades</a></li>
+        <li><a href="/profile">Editar Perfil</a></li>
+        <li (click)="logout()">Cerrar sesión</li>
+      </ul>
+    </nav>
+  </header>
+  

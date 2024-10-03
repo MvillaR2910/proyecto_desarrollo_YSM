@@ -13,6 +13,11 @@ export class LoggedInHeaderComponent {
 
   logout() {
     localStorage.removeItem('userProfile');
+    sessionStorage.removeItem('usuario');
     this.router.navigate(['/login']);
+    window.location.reload(); 
   }
+  
 }
+
+ 
