@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" class="form-container">
   <div>
     <label for="titulo">Título:</label>
     <input type="text" [(ngModel)]="vivienda.titulo" name="titulo" required>
@@ -46,18 +46,12 @@
 
   <div>
     <label>Fotos:</label>
-    @for (foto of vivienda.fotos; track $index) {
-
-      <div >
-        <input type="text" [(ngModel)]="vivienda.fotos[$index]" name="foto{{$index}}" placeholder="URL de la foto">
-        <button type="button" (click)="eliminarFoto($index)">Eliminar</button>
-      </div>
-    }@empty {
-      <li> No hay imágenes</li>
-    }
+    <div *ngFor="let foto of vivienda.fotos; let i = index">
+      <input type="text" [(ngModel)]="vivienda.fotos[i]" name="foto{{i}}" placeholder="URL de la foto">
+      <button type="button" (click)="eliminarFoto(i)">Eliminar</button>
+    </div>
     <button type="button" (click)="agregarFoto()">Agregar Foto</button>
-
   </div>
 
-  <button type="submit">Guardar Vivienda</button>
+  <button type="submit" class="primary">Guardar Vivienda</button>
 </form>

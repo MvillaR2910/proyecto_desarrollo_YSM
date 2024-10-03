@@ -3,26 +3,27 @@ import { ViviendaService } from '../services/vivienda.service';
 import { Vivienda } from '../models/property.model';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common'; // IMPORTAR CommonModule
 
 @Component({
   selector: 'app-vivienda-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule], // Asegúrate de incluir CommonModule aquí
   templateUrl: './vivienda-form.component.html',
-  styleUrl: './vivienda-form.component.css'
+  styleUrls: ['./vivienda-form.component.css']
 })
 export class ViviendaFormComponent {
-  vivienda: Vivienda
-  update: boolean
+  vivienda: Vivienda;
+  update: boolean;
 
   constructor(private viviendaService: ViviendaService, private route: ActivatedRoute) {
     this.vivienda = {
       id: 0,
-      titulo: "",
-      descripcion: "",
-      pais: "",
-      ciudad: "",
-      direccion: "",
+      titulo: '',
+      descripcion: '',
+      pais: '',
+      ciudad: '',
+      direccion: '',
       precioNoche: 0,
       habitaciones: 0,
       banos: 0,
@@ -30,22 +31,21 @@ export class ViviendaFormComponent {
       fotos: [],
       reservas: []
     };
-    this.update = false
+    this.update = false;
   }
+
   ngOnInit() {
     // Verifica si viene un id en la ruta
     this.route.paramMap.subscribe(params => {
-      if (params.get("id")) {
-        const vivienda = this.viviendaService.getViviendaById(Number(params.get("id")));
+      if (params.get('id')) {
+        const vivienda = this.viviendaService.getViviendaById(Number(params.get('id')));
         if (vivienda) {
-          this.vivienda = vivienda
-          this.update = true
+          this.vivienda = vivienda;
+          this.update = true;
         }
       }
-
     });
   }
-
 
   onSubmit(): void {
     if (this.update) {
@@ -55,9 +55,8 @@ export class ViviendaFormComponent {
     }
   }
 
-
-   // Método para agregar una nueva foto
-   agregarFoto() {
+  // Método para agregar una nueva foto
+  agregarFoto() {
     this.vivienda.fotos.push(''); // Agregar un nuevo campo vacío para la foto
   }
 
@@ -67,11 +66,10 @@ export class ViviendaFormComponent {
   }
 
   crearVivienda(vivienda: Vivienda): void {
-    this.viviendaService.crearVivienda(vivienda)
+    this.viviendaService.crearVivienda(vivienda);
   }
 
   actualizarVivienda(id: number, vivienda: Vivienda): void {
-
-    this.viviendaService.actualizarVivienda(id, vivienda)
+    this.viviendaService.actualizarVivienda(id, vivienda);
   }
 }
