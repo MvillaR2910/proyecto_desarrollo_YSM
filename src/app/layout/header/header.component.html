@@ -1,17 +1,22 @@
 <header>
-  <nav class="header-nav">
+  <nav>
     <ul class="nav-list">
       <li><a href="/">AirCNC</a></li>
       <li><a href="/home">Propiedades</a></li>
     </ul>
     <div class="menu">
-      <button class="menu-button">
-        <span *ngIf="!isLoggedIn">
-          <a href="/login">Iniciar sesión</a> | 
-          <a href="/signup">Registrar</a>
-        </span>
-        <span *ngIf="isLoggedIn">{{ userProfile?.email }}</span>
+      <button (click)="toggleMenu()" class="menu-button">
+        <i class="fas fa-user"></i>
       </button>
+      <div class="dropdown" [class.open]="menuOpen">
+        <ul class="dropdown-menu">
+          <!-- Mostrar opciones según el estado de autenticación -->
+          <li *ngIf="!isLoggedIn"><a href="/login">Iniciar sesión</a></li>
+          <li *ngIf="!isLoggedIn"><a href="/signup">Registrar</a></li>
+          <li *ngIf="isLoggedIn"><a href="/profile">Editar perfil</a></li>
+          <li *ngIf="isLoggedIn" (click)="logout()">Cerrar sesión</li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
