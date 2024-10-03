@@ -1,35 +1,52 @@
 header {
-    background-color: #ffffff;
-    padding: 15px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .nav-list {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-list li {
-    margin-right: 30px;
-  }
-  
-  .nav-list li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-  }
-  
-  .nav-list li:hover {
-    color: #FF385C;
-    cursor: pointer;
-  }
-  
+  background-color: #ffffff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  margin-right: 30px;
+}
+
+.nav-list li:first-child a {
+  color: #FF385C; /* Color rojo para el primer elemento (AirCNC) */
+  font-weight: 700; /* Negrita para destacar */
+  font-size: 28px; /* Ajusta el tamaño si es necesario */
+}
+
+.nav-list li a, .nav-list li span {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav-list li:hover {
+  color: #FF385C;
+  cursor: pointer;
+}
+
+.nav-list li span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.welcome-message {
+  font-size: 18px;
+  color: #333;
+  margin-left: auto;
+  margin-right: 50px;
+}
