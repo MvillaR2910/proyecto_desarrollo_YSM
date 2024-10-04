@@ -170,6 +170,15 @@ main {
     margin-bottom: 8px;
 }
 
+/* Imagen principal y ajuste de tamaño */
+.destination img {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Limitar altura de la imagen principal */
+    object-fit: cover; /* Mantiene la relación de aspecto de la imagen */
+    border-radius: 10px;
+}
+
 /* Botones de acciones */
 .destination div {
     display: flex;
@@ -195,7 +204,13 @@ main {
     background-color: #e02d50;
 }
 
-
+/* Propiedades Destacadas */
+.properties-grid .destination img {
+    width: 100%;
+    height: 200px;  /* Ajustar tamaño para que no sea tan grande en propiedades destacadas */
+    object-fit: cover;
+    border-radius: 10px;
+}
 
 /* Destinos Populares */
 .popular-destinations {
