@@ -18,7 +18,6 @@ export class SupabaseService {
   // Método para subir imagen
   async uploadImage(file: File): Promise<string | null> {
     try {
-      // Comprobar si el usuario está autenticado en el sessionStorage local
       const storedUser = sessionStorage.getItem('usuario');
 
       if (!storedUser) {
@@ -55,6 +54,25 @@ export class SupabaseService {
     } catch (error) {
       console.error('Error al obtener la URL pública:', error);
       return null;
+    }
+  }
+
+  // Método para listar las imágenes del bucket
+  async listarImagenes(): Promise<any[]> {
+    try {
+      const { data, error } = await this.supabase.storage
+        .from('aircnc_images')
+        .list(); // Lista todos los archivos en el bucket
+
+      if (error) {
+        console.error('Error al listar las imágenes:', error.message);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Error general al listar las imágenes:', error);
+      return [];
     }
   }
 }

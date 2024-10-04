@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ordenar, Vivienda } from '../models/property.model';
+import { SupabaseService } from './supabase.service';  // Importamos el servicio de Supabase
 
 @Injectable({
   providedIn: 'root'
@@ -7,79 +8,64 @@ import { Ordenar, Vivienda } from '../models/property.model';
 export class ViviendaService {
   private viviendas: Vivienda[]
   private keyName: string
-  constructor() {
+
+  constructor(private supabaseService: SupabaseService) {  // Inyectamos el servicio de Supabase
     this.keyName = "viviendas"
     const vivienda = localStorage.getItem(this.keyName)
+
     if (!vivienda) {
+      // Aquí podríamos dejar la estructura básica, pero eliminamos las fotos predeterminadas.
       this.viviendas = [
         {
-          "id": 1,
-          "titulo": "Apartamento en el centro",
-          "descripcion": "Un acogedor apartamento en el centro de la ciudad.",
-          "pais": "Colombia",
-          "ciudad": "Bogota",
-          "direccion": "Calle 10 #5-30",
-          "precioNoche": 100,
-          "habitaciones": 2,
-          "banos": 1,
-          "capacidadMaxima": 4,
-          "fotoPrincipal": "foto1.jpg",
-          "fotos": ["foto1.jpg", "foto2.jpg"],
-          "reservas": [
+          id: 1,
+          titulo: "Apartamento en el centro",
+          descripcion: "Un acogedor apartamento en el centro de la ciudad.",
+          pais: "Colombia",
+          ciudad: "Bogota",
+          direccion: "Calle 10 #5-30",
+          precioNoche: 100,
+          habitaciones: 2,
+          banos: 1,
+          capacidadMaxima: 4,
+          fotoPrincipal: '',  
+          fotos: [],
+          reservas: [
             {
-              "fechaInicio": "2024-10-01",
-              "fechaFin": "2024-10-05"
-            },
-            {
-              "fechaInicio": "2024-10-10",
-              "fechaFin": "2024-10-15"
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "titulo": "Casa de campo",
-          "descripcion": "Hermosa casa de campo con vistas a las montañas.",
-          "pais": "Colombia",
-          "ciudad": "Medellín",
-          "direccion": "Vereda El Salado",
-          "precioNoche": 200,
-          "habitaciones": 3,
-          "banos": 2,
-          "capacidadMaxima": 6,
-          "fotoPrincipal": "foto3.jpg",
-          "fotos": ["foto3.jpg", "foto4.jpg"],
-          "reservas": [
-            {
-              "fechaInicio": "2024-11-01",
-              "fechaFin": "2024-11-07"
+              fechaInicio: "2024-10-01",
+              fechaFin: "2024-10-05"
             }
           ]
         }
-      ]
-      localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
+      ];
+      localStorage.setItem(this.keyName, JSON.stringify(this.viviendas));
     } else {
-      this.viviendas = JSON.parse(vivienda)
+      this.viviendas = JSON.parse(vivienda);
     }
   }
 
   getViviendas(): Vivienda[] {
-    return this.viviendas
+    return this.viviendas;
+  }
+
+  async crearVivienda(vivienda: Vivienda): Promise<void> {
+    vivienda.id = this.viviendas[this.viviendas.length - 1].id + 1;
+    
+    if (vivienda.fotoPrincipal) {
+      const fotoUrl = await this.supabaseService.getImageUrl(vivienda.fotoPrincipal);
+      vivienda.fotoPrincipal = fotoUrl || vivienda.fotoPrincipal;
+    }
+
+    this.viviendas.push(vivienda);
+    localStorage.setItem(this.keyName, JSON.stringify(this.viviendas));
   }
 
   getViviendaById(id: number): Vivienda | undefined {
-    return this.viviendas.find((vivienda) => vivienda.id == id)
-  }
-
-  crearVivienda(vivienda: Vivienda): void {
-    vivienda.id = this.viviendas[this.viviendas.length - 1].id + 1
-    this.viviendas.push(vivienda)
-    localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
+    return this.viviendas.find((vivienda) => vivienda.id === id);
   }
 
   eliminarVivienda(id: number) {
-    this.viviendas = this.viviendas.filter((vivienda) => vivienda.id != id)
-    localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
+    this.viviendas = this.viviendas.filter((vivienda) => vivienda.id !== id);
+    localStorage.setItem(this.keyName, JSON.stringify(this.viviendas));
   }
 
   actualizarVivienda(id: number, vivienda: Vivienda) {
@@ -89,7 +75,7 @@ export class ViviendaService {
       }
       return v;
     });
-    localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
+    localStorage.setItem(this.keyName, JSON.stringify(this.viviendas));
   }
 
   buscarVivienda(query: string, minPrecio: number, maxPrecio: number, habitaciones: number, ordenar: Ordenar | null): Vivienda[] {
@@ -108,9 +94,9 @@ export class ViviendaService {
 
   ordenarViviendas(viviendas: Vivienda[], ordenar: Ordenar | null): Vivienda[] {
     if (ordenar != null) {
-      ordenar === "Precio" ? viviendas.sort((a, b) => a.precioNoche - b.precioNoche) : null
-      ordenar === "Habitaciones" ? viviendas.sort((a, b) => a.habitaciones - b.habitaciones) : null
+      ordenar === "Precio" ? viviendas.sort((a, b) => a.precioNoche - b.precioNoche) : null;
+      ordenar === "Habitaciones" ? viviendas.sort((a, b) => a.habitaciones - b.habitaciones) : null;
     }
-    return viviendas
+    return viviendas;
   }
 }

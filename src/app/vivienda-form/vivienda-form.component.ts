@@ -37,7 +37,7 @@ export class ViviendaFormComponent {
       capacidadMaxima: 0,
       fotos: [],
       reservas: [],
-      fotoPrincipal: ''  // Agregamos la propiedad de foto principal
+      fotoPrincipal: '' 
     };
     this.update = false;
   }
