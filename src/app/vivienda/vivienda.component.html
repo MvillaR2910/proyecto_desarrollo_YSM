@@ -1,114 +1,58 @@
 <main>
     <!-- Hero Image Section -->
     <section class="hero">
-      <div class="hero-content">
-        <h1>Encuentra tu próximo hogar lejos de casa</h1>
-        <form (submit)="buscarViviendas()" class="search-form">
-          <div class="form-group">
-            <label for="elementos">En orden de:</label>
-            <select id="elementos" [(ngModel)]="seleccion" name="seleccion">
-              <option disabled selected>Seleccione una opción</option>
-              <option *ngFor="let elemento of ordenar; let i = index" [value]="elemento">{{ elemento }}</option>
-            </select>
-          </div>
-  
-          <div class="form-group">
-            <label for="query">Destino</label>
-            <input [(ngModel)]="query" name="query" type="text" placeholder="¿A dónde vas?" />
-          </div>
-  
-          <div class="form-group">
-            <label for="minPrecio">Precio mínimo por noche</label>
-            <input [(ngModel)]="minPrecio" id="minPrecio" name="minPrecio" type="number" />
-          </div>
-  
-          <div class="form-group">
-            <label for="maxPrecio">Precio máximo por noche</label>
-            <input [(ngModel)]="maxPrecio" id="maxPrecio" name="maxPrecio" type="number" />
-          </div>
-  
-          <div class="form-group">
-            <label for="habitaciones">Cantidad de habitaciones</label>
-            <input
-              [(ngModel)]="habitaciones"
-              id="habitaciones"
-              name="habitaciones"
-              type="number"
-              placeholder="Número de habitaciones"
-            />
-          </div>
-  
-          <div class="form-group">
-            <label for="fechaLlegada">Fecha de llegada</label>
-            <input type="date" name="fechaLlegada" placeholder="Fecha de llegada" />
-          </div>
-  
-          <div class="form-group">
-            <label for="fechaSalida">Fecha de salida</label>
-            <input type="date" name="fechaSalida" placeholder="Fecha de salida" />
-          </div>
-  
-          <button type="submit">Buscar</button>
-        </form>
-      </div>
+        <div class="hero-content">
+            <h1>Encuentra tu próximo hogar lejos de casa</h1>
+            <form (submit)="buscarViviendas()" class="search-form">
+                <div class="form-group">
+                    <label for="query">Destino</label>
+                    <input [(ngModel)]="query" name="query" type="text" placeholder="¿A dónde vas?">
+                </div>
+
+                <div class="form-group">
+                    <label for="minPrecio">Precio mínimo por noche</label>
+                    <input [(ngModel)]="minPrecio" id="minPrecio" name="minPrecio" type="number">
+                </div>
+
+                <div class="form-group">
+                    <label for="maxPrecio">Precio máximo por noche</label>
+                    <input [(ngModel)]="maxPrecio" id="maxPrecio" name="maxPrecio" type="number">
+                </div>
+
+                <div class="form-group">
+                    <label for="habitaciones">Cantidad de habitaciones</label>
+                    <input [(ngModel)]="habitaciones" id="habitaciones" name="habitaciones" type="number"
+                        placeholder="Número de habitaciones">
+                </div>
+
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
     </section>
-  
+
     <!-- Destinos Populares Section -->
     <section class="popular-destinations">
-      <h2>Destinos populares</h2>
-      <div *ngFor="let vivienda of obetenerViviendas(); let i = index" class="destination" (click)="verDetalles(vivienda.id)">
-        <!-- Imagen principal -->
-        <img [src]="vivienda.fotoPrincipal" alt="{{ vivienda.ciudad }}" *ngIf="vivienda.fotoPrincipal" />
-  
-        <!-- Información detallada -->
-        <ul>
-          <li>País: {{ vivienda.pais }}</li>
-          <li>Ciudad: {{ vivienda.ciudad }}</li>
-          <li>Dirección: {{ vivienda.direccion }}</li>
-          <li>Precio por noche: {{ vivienda.precioNoche }}</li>
-          <li>Número de habitaciones: {{ vivienda.habitaciones }}</li>
-          <li>Baños: {{ vivienda.banos }}</li>
-          <li>Capacidad máxima: {{ vivienda.capacidadMaxima }}</li>
-          <li>Descripción: {{ vivienda.descripcion }}</li>
-        </ul>
-  
-        <!-- Botones de acciones -->
-        <div>
-          <button (click)="eliminarVivienda(vivienda.id)">Eliminar</button>
-          <button (click)="actualizarVivienda(vivienda.id)">Actualizar</button>
+        <h2>Destinos populares</h2>
+        <div *ngFor="let vivienda of obetenerViviendas()">
+            <div class="destination" (click)="verDetalles(vivienda.id)">
+                <img [src]="vivienda.fotoPrincipal" alt="{{vivienda.ciudad}}" *ngIf="vivienda.fotoPrincipal">
+
+                <ul>
+                    <li>País: {{vivienda.pais}}</li>
+                    <li>Ciudad: {{vivienda.ciudad}}</li>
+                    <li>Dirección: {{vivienda.direccion}}</li>
+                    <li>Precio por noche: {{vivienda.precioNoche}}</li>
+                    <li>Número de habitaciones: {{vivienda.habitaciones}}</li>
+                    <li>Baños: {{vivienda.banos}}</li>
+                    <li>Capacidad máxima: {{vivienda.capacidadMaxima}}</li>
+                    <li>Descripción: {{vivienda.descripcion}}</li>
+                </ul>
+
+                <div>
+                    <button (click)="eliminarVivienda(vivienda.id)">Eliminar</button>
+                    <button (click)="actualizarVivienda(vivienda.id)">Actualizar</button>
+                </div>
+            </div>
         </div>
-      </div>
-      <p *ngIf="obetenerViviendas().length === 0">No hay viviendas disponibles</p>
     </section>
-  
-    <!-- Propiedades Destacadas Section -->
-    <section class="featured-properties">
-      <h2>Propiedades destacadas</h2>
-      <div class="properties-grid">
-        <div *ngFor="let vivienda of viviendasDestacadas(); let i = index" class="destination" (click)="verDetalles(vivienda.id)">
-          <img [src]="vivienda.fotoPrincipal" alt="{{ vivienda.ciudad }}" *ngIf="vivienda.fotoPrincipal" />
-          <ul>
-            <li>País: {{ vivienda.pais }}</li>
-            <li>Ciudad: {{ vivienda.ciudad }}</li>
-            <li>Dirección: {{ vivienda.direccion }}</li>
-            <li>Precio por noche: {{ vivienda.precioNoche }}</li>
-          </ul>
-        </div>
-      </div>
-      <p *ngIf="viviendasDestacadas().length === 0">No hay viviendas disponibles</p>
-    </section>
-  
-    <!-- Testimonios Section -->
-    <section class="testimonials">
-      <h2>Lo que dicen nuestros huéspedes</h2>
-      <div class="testimonial">
-        <p>"¡Una experiencia increíble! La casa era hermosa y el anfitrión fue muy amable."</p>
-        <p>- Juan P.</p>
-      </div>
-      <div class="testimonial">
-        <p>"El mejor lugar en el que me he hospedado, ¡sin duda alguna!"</p>
-        <p>- María G.</p>
-      </div>
-    </section>
-  </main>
-  
+</main>

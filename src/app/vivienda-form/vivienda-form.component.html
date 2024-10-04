@@ -44,14 +44,12 @@
     <input type="number" [(ngModel)]="vivienda.capacidadMaxima" name="capacidadMaxima" required>
   </div>
 
-  <!-- Subir imagen principal -->
   <div>
     <label for="fotoPrincipal">Subir Foto Principal:</label>
     <input type="file" (change)="onPrincipalFileSelected($event)" />
     <button type="button" (click)="uploadPrincipalImage()">Subir Foto Principal</button>
   </div>
 
-  <!-- Subir imágenes secundarias -->
   <div>
     <label for="fotos">Subir Fotos Secundarias:</label>
     <input type="file" (change)="onFileSelected($event)" />
@@ -59,14 +57,15 @@
   </div>
 
   <div>
-    <label>Fotos Secundarias:</label>
+    <label>Fotos:</label>
     <div *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
       <h3>Imágenes Subidas</h3>
-      <div *ngFor="let foto of vivienda.fotos">
+      <div *ngFor="let foto of vivienda.fotos; let i = index">
         <img [src]="foto" alt="Foto de la propiedad" width="200px" height="auto">
+        <button type="button" (click)="eliminarFoto(i)">Eliminar Foto</button>
       </div>
-    </div>
+    </div>    
   </div>
-
+  
   <button type="submit" class="primary">Guardar Vivienda</button>
 </form>
