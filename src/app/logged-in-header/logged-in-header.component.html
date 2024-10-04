@@ -7,9 +7,8 @@
       <li *ngIf="userProfile" (click)="logout()">Cerrar sesión</li>
     </ul>
   </nav>
-  
   <!-- Mostrar el nombre del usuario y el mensaje de bienvenida -->
   <div *ngIf="userProfile" class="welcome-message">
-    <p>Bienvenido, {{ userProfile.nombre }}</p>  <!-- Aquí mostramos el nombre del usuario -->
+    <p>Bienvenido, {{ userProfile.nombre }}</p> 
   </div>
 </header>

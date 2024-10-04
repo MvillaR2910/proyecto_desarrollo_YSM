@@ -1,6 +1,6 @@
 <div class="destination" *ngIf="vivienda">
     <!-- Imagen principal -->
-    <img [src]="vivienda.fotos[0]" alt="{{vivienda.ciudad}}" *ngIf="vivienda.fotos.length > 0">
+    <img [src]="vivienda.fotoPrincipal" alt="{{vivienda.ciudad}}" *ngIf="vivienda.fotoPrincipal">
 
     <!-- Información detallada -->
     <ul>
@@ -15,7 +15,7 @@
     </ul>
 
     <!-- Galería de fotos adicionales -->
-    <div *ngIf="vivienda && vivienda.fotos && vivienda.fotos.length > 0">
+    <div *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
         <h3>Imágenes Subidas</h3>
         <div *ngFor="let foto of vivienda.fotos">
           <img *ngIf="isValidImage(foto)" [src]="foto" alt="Foto de la propiedad" width="200px" height="auto">
