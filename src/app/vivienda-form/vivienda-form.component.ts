@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../services/supabase.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vivienda-form',
@@ -22,8 +24,17 @@ export class ViviendaFormComponent {
   constructor(
     private viviendaService: ViviendaService,
     private route: ActivatedRoute,
-    private supabaseService: SupabaseService
+    private supabaseService: SupabaseService,
+    private authService: AuthService,
+    private router: Router
   ) {
+    // Verificar si el usuario está autenticado
+    const user = this.authService.getUser();
+    if (!user) {
+      this.router.navigate(['/login']); // Redirigir al login si no está autenticado
+    }
+
+    // Inicializar la vivienda
     this.vivienda = {
       id: 0,
       titulo: '',
@@ -91,7 +102,7 @@ export class ViviendaFormComponent {
         if (path) {
           const imageUrl = await this.supabaseService.getImageUrl(path);
           if (imageUrl) {
-            this.vivienda.fotos.push(imageUrl);
+            this.vivienda.fotos.push(imageUrl);  // Guardar la URL pública en el array de fotos
             console.log('URL de la imagen secundaria subida:', imageUrl);
           }
         }

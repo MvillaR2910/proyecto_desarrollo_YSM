@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ordenar, Vivienda } from '../models/property.model';
-import { SupabaseService } from './supabase.service';  // Importamos el servicio de Supabase
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +9,11 @@ export class ViviendaService {
   private viviendas: Vivienda[]
   private keyName: string
 
-  constructor(private supabaseService: SupabaseService) {  // Inyectamos el servicio de Supabase
+  constructor(private supabaseService: SupabaseService) {
     this.keyName = "viviendas"
     const vivienda = localStorage.getItem(this.keyName)
 
     if (!vivienda) {
-      // Aquí podríamos dejar la estructura básica, pero eliminamos las fotos predeterminadas.
       this.viviendas = [
         {
           id: 1,

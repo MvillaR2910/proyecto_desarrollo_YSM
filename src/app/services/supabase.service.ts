@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +9,8 @@ export class SupabaseService {
 
   constructor() {
     this.supabase = createClient(
-      'https://ocmefpjbkckbnvobewre.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jbWVmcGpia2NrYm52b2Jld3JlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc5OTY0MDgsImV4cCI6MjA0MzU3MjQwOH0.2Qss_OlRmMhF9Jgo57HpcRmSA0cvWMGti4oqlJFTnwE'
+      'https://ocmefpjbkckbnvobewre.supabase.co', // URL de tu proyecto en Supabase
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9jbWVmcGpia2NrYm52b2Jld3JlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc5OTY0MDgsImV4cCI6MjA0MzU3MjQwOH0.2Qss_OlRmMhF9Jgo57HpcRmSA0cvWMGti4oqlJFTnwE' // API key
     );
   }
 
@@ -25,54 +24,37 @@ export class SupabaseService {
         return null;
       }
 
-      const userId = JSON.parse(storedUser).email; // Puedes usar el email o cualquier identificador único del usuario.
+      const userId = JSON.parse(storedUser).email;
 
       const { data: uploadData, error: uploadError } = await this.supabase.storage
         .from('aircnc_images')
-        .upload(`${userId}/${file.name}`, file);  // Guardar la imagen en una carpeta del usuario
+        .upload(`${userId}/${file.name}`, file);
 
       if (uploadError) {
         console.error('Error al subir la imagen:', uploadError.message);
         return null;
       }
 
-      return uploadData?.path || null;  // Devolver la ruta del archivo si está disponible
+      return uploadData?.path || null;
     } catch (error) {
       console.error('Error general al subir la imagen:', error);
       return null;
     }
   }
 
-  // Método para obtener la URL pública de la imagen
+  // Método para obtener la URL pública de la imagen (sin referencia a error)
   async getImageUrl(path: string): Promise<string | null> {
     try {
       const { data } = this.supabase.storage
-        .from('aircnc_images')  // Usa el nombre correcto del bucket
+        .from('aircnc_images')  // Nombre del bucket
         .getPublicUrl(path);
 
-      return data?.publicUrl || null;  // Devolver la URL pública si está disponible
+      console.log('URL pública generada:', data.publicUrl);  // Imprimir la URL generada
+
+      return data.publicUrl || null;
     } catch (error) {
-      console.error('Error al obtener la URL pública:', error);
+      console.error('Error general al obtener la URL pública:', error);
       return null;
-    }
-  }
-
-  // Método para listar las imágenes del bucket
-  async listarImagenes(): Promise<any[]> {
-    try {
-      const { data, error } = await this.supabase.storage
-        .from('aircnc_images')
-        .list(); // Lista todos los archivos en el bucket
-
-      if (error) {
-        console.error('Error al listar las imágenes:', error.message);
-        return [];
-      }
-
-      return data || [];
-    } catch (error) {
-      console.error('Error general al listar las imágenes:', error);
-      return [];
     }
   }
 }
