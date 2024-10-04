@@ -5,12 +5,12 @@ import { ViviendaService } from '../services/vivienda.service';
 import { Vivienda } from '../models/property.model';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common'; // Se agrega CommonModule
 
 @Component({
   selector: 'app-vivienda',
   standalone: true,
-  imports: [FooterComponent, HeaderComponent, FormsModule],
+  imports: [FooterComponent, HeaderComponent, FormsModule, CommonModule], // Agregar CommonModule aquí
   templateUrl: './vivienda.component.html',
   styleUrl: './vivienda.component.css'
 })
@@ -36,8 +36,9 @@ export class ViviendaComponent {
   }
 
   buscarViviendas() {
-    this.viviendas = this.viviendaService.buscarVivienda(this.query, this.minPrecio,this.maxPrecio == 0 ? Number.MAX_VALUE : this.maxPrecio,  this.habitaciones, this.seleccion)
+    this.viviendas = this.viviendaService.buscarVivienda(this.query, this.minPrecio, this.maxPrecio == 0 ? Number.MAX_VALUE : this.maxPrecio, this.habitaciones, this.seleccion)
   }
+
   obetenerViviendas() {
     return this.viviendas
   }
@@ -45,6 +46,7 @@ export class ViviendaComponent {
   eliminarVivienda(id: number) {
     this.viviendaService.eliminarVivienda(id)
   }
+
   actualizarVivienda(id: number) {
     this.router.navigate(['manejar-vivienda', id]);
   }

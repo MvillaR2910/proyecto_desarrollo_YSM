@@ -23,8 +23,8 @@ export interface Vivienda {
     banos: number;
     capacidadMaxima: number;
     fotos: string[];
+    fotoPrincipal: string | null;  // Nueva propiedad
     reservas: Reserva[]
-
 
 }
 

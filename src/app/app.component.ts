@@ -3,18 +3,16 @@ import { RouterOutlet, Router } from '@angular/router';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from "./layout/header/header.component";
 import { LoggedInHeaderComponent } from './logged-in-header/logged-in-header.component';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Asegúrate de importar CommonModule
 
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
+    CommonModule,  // Asegúrate de incluir CommonModule aquí
     RouterOutlet,
     FooterComponent,
     HeaderComponent,
-    LoggedInHeaderComponent,
-    FormsModule
+    LoggedInHeaderComponent
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',

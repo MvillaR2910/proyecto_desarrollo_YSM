@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ordenar, Vivienda } from '../models/property.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +23,7 @@ export class ViviendaService {
           "habitaciones": 2,
           "banos": 1,
           "capacidadMaxima": 4,
+          "fotoPrincipal": "foto1.jpg",
           "fotos": ["foto1.jpg", "foto2.jpg"],
           "reservas": [
             {
@@ -39,14 +39,15 @@ export class ViviendaService {
         {
           "id": 2,
           "titulo": "Casa de campo",
-          "descripcion": "Hermosa casa de campo con vistas a las montanas.",
+          "descripcion": "Hermosa casa de campo con vistas a las montañas.",
           "pais": "Colombia",
-          "ciudad": "Medellin",
+          "ciudad": "Medellín",
           "direccion": "Vereda El Salado",
           "precioNoche": 200,
           "habitaciones": 3,
           "banos": 2,
           "capacidadMaxima": 6,
+          "fotoPrincipal": "foto3.jpg",
           "fotos": ["foto3.jpg", "foto4.jpg"],
           "reservas": [
             {
@@ -54,57 +55,12 @@ export class ViviendaService {
               "fechaFin": "2024-11-07"
             }
           ]
-        },
-        {
-          "id": 3,
-          "titulo": "Loft moderno",
-          "descripcion": "Un loft moderno en una ubicacion exclusiva.",
-          "pais": "Colombia",
-          "ciudad": "Cali",
-          "direccion": "Avenida Roosevelt #25-50",
-          "precioNoche": 150,
-          "habitaciones": 1,
-          "banos": 1,
-          "capacidadMaxima": 2,
-          "fotos": ["foto5.jpg", "foto6.jpg"],
-          "reservas": [
-            {
-              "fechaInicio": "2024-12-15",
-              "fechaFin": "2024-12-20"
-            }
-          ]
-        },
-        {
-          "id": 4,
-          "titulo": "Villa frente al mar",
-          "descripcion": "Villa de lujo frente al mar con piscina privada.",
-          "pais": "Colombia",
-          "ciudad": "Cartagena",
-          "direccion": "Isla Baru, Sector Playa Blanca",
-          "precioNoche": 500,
-          "habitaciones": 4,
-          "banos": 3,
-          "capacidadMaxima": 10,
-          "fotos": ["foto7.jpg", "foto8.jpg"],
-          "reservas": [
-            {
-              "fechaInicio": "2024-09-25",
-              "fechaFin": "2024-09-30"
-            },
-            {
-              "fechaInicio": "2024-10-20",
-              "fechaFin": "2024-10-25"
-            }
-          ]
         }
       ]
-
-
       localStorage.setItem(this.keyName, JSON.stringify(this.viviendas))
     } else {
       this.viviendas = JSON.parse(vivienda)
     }
-
   }
 
   getViviendas(): Vivienda[] {
@@ -127,7 +83,6 @@ export class ViviendaService {
   }
 
   actualizarVivienda(id: number, vivienda: Vivienda) {
-
     this.viviendas = this.viviendas.map(v => {
       if (v.id === id) {
         return vivienda;
@@ -138,26 +93,17 @@ export class ViviendaService {
   }
 
   buscarVivienda(query: string, minPrecio: number, maxPrecio: number, habitaciones: number, ordenar: Ordenar | null): Vivienda[] {
-
-    const filtroVivendas = this.viviendas.filter(vivienda => {
-      // Comprobar que coincida con la dirección, ciudad o país
+    const filtroViviendas = this.viviendas.filter(vivienda => {
       const coincideDireccion = query ? vivienda.direccion.toLowerCase().includes(query.toLowerCase()) : true;
       const coincideCiudad = query ? vivienda.ciudad.toLowerCase().includes(query.toLowerCase()) : true;
       const coincidePais = query ? vivienda.pais.toLowerCase().includes(query.toLowerCase()) : true;
-
-      // Verificar que la vivienda esté dentro del rango de precios
       const coincidePrecio = vivienda.precioNoche >= minPrecio && vivienda.precioNoche <= maxPrecio;
-
-      // Verificar que el número de habitaciones coincida
       const coincideHabitaciones = vivienda.habitaciones >= habitaciones;
 
-
-      // Solo devolver las viviendas que cumplan con todos los criterios
       return (coincideDireccion || coincideCiudad || coincidePais) && coincidePrecio && coincideHabitaciones;
     });
 
-    return this.ordenarViviendas(filtroVivendas, ordenar)
-
+    return this.ordenarViviendas(filtroViviendas, ordenar);
   }
 
   ordenarViviendas(viviendas: Vivienda[], ordenar: Ordenar | null): Vivienda[] {
@@ -167,5 +113,4 @@ export class ViviendaService {
     }
     return viviendas
   }
-
 }

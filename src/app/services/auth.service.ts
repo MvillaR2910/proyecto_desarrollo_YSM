@@ -12,23 +12,28 @@ interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  private user: User | null;
+  private user: User | null = null;
 
   constructor() {
+    // Recuperar el usuario autenticado (si existe) cuando se inicia la aplicación
     const storedUser = sessionStorage.getItem('usuario');
-    this.user = storedUser ? JSON.parse(storedUser) : null;
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+    }
   }
 
+  // Obtener el usuario actual
   getUser(): User | null {
-    const storedUser = sessionStorage.getItem('usuario');
-    return storedUser ? JSON.parse(storedUser) : null;
+    return this.user;
   }
 
+  // Método para iniciar sesión
   onLogin(email: string, password: string) {
     if (!email || !password) {
       throw new Error("Todos los campos deben estar completos.");
     }
 
+    // Recuperar datos de usuario del almacenamiento local simulado
     const stringUsuario = localStorage.getItem(email);
 
     if (!stringUsuario) {
@@ -37,16 +42,19 @@ export class AuthService {
 
     const jsonUsuario = JSON.parse(stringUsuario);
 
+    // Validar la contraseña
     if (password !== jsonUsuario.password) {
       throw new Error("Email o contraseña inválidos.");
     }
 
+    // Asignar el usuario actual y guardarlo en sessionStorage
     this.user = jsonUsuario;
-    sessionStorage.setItem('usuario', JSON.stringify(jsonUsuario));
+    sessionStorage.setItem('usuario', JSON.stringify(this.user));  // Guardar el usuario autenticado en sessionStorage
   }
 
+  // Método para cerrar sesión
   logout() {
     this.user = null;
-    sessionStorage.removeItem('usuario');
+    sessionStorage.removeItem('usuario');  // Eliminar el usuario autenticado de sessionStorage
   }
 }

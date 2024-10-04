@@ -1,6 +1,10 @@
-<app-header *ngIf="!isLoggedIn"></app-header>
-<app-logged-in-header *ngIf="isLoggedIn"></app-logged-in-header>
-
-<router-outlet></router-outlet>
-
-<app-footer></app-footer>
+<ng-container *ngIf="isLoggedIn; else loggedOut">
+    <app-logged-in-header></app-logged-in-header> <!-- Header cuando está logueado -->
+  </ng-container>
+  <ng-template #loggedOut>
+    <app-header></app-header> <!-- Header para no autenticado -->
+  </ng-template>
+  
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  
