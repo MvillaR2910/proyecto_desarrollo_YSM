@@ -11,7 +11,7 @@ import { AuthGuard } from './services/auth.guard';  // Importamos el AuthGuard
 export const routes: Routes = [
     { path: '', redirectTo: '/viviendas', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: "profile", component: ProfileComponent }, 
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },  // Protegemos esta ruta
     { path: 'signup', component: SignupComponent },
     { path: 'viviendas', component: ViviendaComponent },
     { path: 'manejar-vivienda', component: ViviendaFormComponent, canActivate: [AuthGuard] },  // Protegemos esta ruta

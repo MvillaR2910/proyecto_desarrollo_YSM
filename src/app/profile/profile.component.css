@@ -10,8 +10,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; /* Centramos verticalmente */
-  min-height: 100vh; /* El contenido ocupa toda la altura de la página */
+  min-height: calc(100vh - 60px); /* Restamos la altura del header (60px) */
   padding: 20px;
+  margin-top: 60px; /* Añadimos margen superior para evitar que se superponga con el header */
 }
 
 .profile-box {
