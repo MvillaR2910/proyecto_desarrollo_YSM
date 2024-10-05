@@ -34,6 +34,46 @@ export class ViviendaService {
               fechaFin: "2024-10-05"
             }
           ]
+        },
+        {
+          id: 2,
+          titulo: "Casa en las montañas",
+          descripcion: "Una tranquila casa con vista a las montañas.",
+          pais: "Colombia",
+          ciudad: "Medellín",
+          direccion: "Vereda El Rosario",
+          precioNoche: 150,
+          habitaciones: 3,
+          banos: 2,
+          capacidadMaxima: 6,
+          fotoPrincipal: '',
+          fotos: [],
+          reservas: [
+            {
+              fechaInicio: "2024-11-01",
+              fechaFin: "2024-11-07"
+            }
+          ]
+        },
+        {
+          id: 3,
+          titulo: "Apartamento con vista al mar",
+          descripcion: "Un hermoso apartamento con vista al mar.",
+          pais: "Colombia",
+          ciudad: "Cartagena",
+          direccion: "Avenida del Malecón",
+          precioNoche: 200,
+          habitaciones: 2,
+          banos: 2,
+          capacidadMaxima: 4,
+          fotoPrincipal: '',
+          fotos: [],
+          reservas: [
+            {
+              fechaInicio: "2024-12-15",
+              fechaFin: "2024-12-20"
+            }
+          ]
         }
       ];
       localStorage.setItem(this.keyName, JSON.stringify(this.viviendas));
