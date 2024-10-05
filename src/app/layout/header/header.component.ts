@@ -1,12 +1,12 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule, Router } from '@angular/router'; // Manteniendo Router para la navegación
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule], // Dejamos los imports que tenías
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
@@ -19,12 +19,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     const storedUser = this.authService.getUser(); 
-    if (storedUser) {
-      this.userProfile = storedUser;
-      this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
-    }
+    this.isLoggedIn = !!storedUser; // Usamos una forma segura para verificar si hay un usuario logueado
   }
 
   toggleMenu() {

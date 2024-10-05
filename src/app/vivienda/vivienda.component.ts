@@ -6,7 +6,7 @@ import { Vivienda } from '../models/property.model';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../services/auth.service'; // Asegúrate de tener el AuthService aquí
+import { AuthService } from '../services/auth.service'; 
 
 @Component({
   selector: 'app-vivienda',
@@ -24,13 +24,16 @@ export class ViviendaComponent {
   ordenar = ["Precio", "Habitaciones"]
   seleccion = null
 
-  // Cambiamos authService a public para que esté accesible en la plantilla (HTML)
   constructor(public authService: AuthService, private router: Router, private viviendaService: ViviendaService) {
     this.viviendas = this.viviendaService.getViviendas();
   }
 
   verDetalles(id: number) {
     this.router.navigate(['/vivienda', id]);
+  }
+
+  crearVivienda() {
+    this.router.navigate(['/manejar-vivienda']);
   }
 
   viviendasDestacadas() {
@@ -46,8 +49,7 @@ export class ViviendaComponent {
   }
 
   eliminarVivienda(id: number) {
-    // Verificamos si el usuario está autenticado antes de eliminar
-    if (this.authService.getUser()) {
+    if (this.authService.isLoggedIn()) {
       this.viviendaService.eliminarVivienda(id);
     } else {
       alert("Debe iniciar sesión para eliminar una propiedad.");

@@ -102,7 +102,7 @@ export class ViviendaFormComponent {
         if (path) {
           const imageUrl = await this.supabaseService.getImageUrl(path);
           if (imageUrl) {
-            this.vivienda.fotos.push(imageUrl);  // Guardar la URL pública en el array de fotos
+            this.vivienda.fotos.push(imageUrl);
             console.log('URL de la imagen secundaria subida:', imageUrl);
           }
         }
@@ -121,7 +121,9 @@ export class ViviendaFormComponent {
   }
 
   crearVivienda(vivienda: Vivienda): void {
-    this.viviendaService.crearVivienda(vivienda);
+    this.viviendaService.crearVivienda(vivienda).then(() => {
+      this.router.navigate(['/viviendas']);  // Redirigir a la lista de viviendas después de crearla
+    });
   }
 
   actualizarVivienda(id: number, vivienda: Vivienda): void {

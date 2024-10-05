@@ -1,7 +1,3 @@
-<header>
-  <h2>Editar Perfil de Usuario</h2>
-</header>
-
 <main class="profile-container">
   <div class="profile-box">
     <form (ngSubmit)="updateProfile()">
@@ -18,11 +14,10 @@
     </form>
 
     <div class="profile-preview">
-      <h3>Vista previa del perfil:</h3>
       <img *ngIf="userData.profile_picture" [src]="userData.profile_picture" alt="Foto de perfil" class="profile-picture">
       <p><strong>Nombre:</strong> {{ userData.nombre }}</p>
       <p><strong>Email:</strong> {{ userData.email }}</p>
       <p><strong>Biografía:</strong> {{ userData.bio }}</p>
     </div>
   </div>
-</main> 
+</main>

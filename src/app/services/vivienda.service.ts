@@ -6,12 +6,12 @@ import { SupabaseService } from './supabase.service';
   providedIn: 'root'
 })
 export class ViviendaService {
-  private viviendas: Vivienda[]
-  private keyName: string
+  private viviendas: Vivienda[];
+  private keyName: string;
 
   constructor(private supabaseService: SupabaseService) {
-    this.keyName = "viviendas"
-    const vivienda = localStorage.getItem(this.keyName)
+    this.keyName = "viviendas";
+    const vivienda = localStorage.getItem(this.keyName);
 
     if (!vivienda) {
       this.viviendas = [
@@ -26,8 +26,8 @@ export class ViviendaService {
           habitaciones: 2,
           banos: 1,
           capacidadMaxima: 4,
-          fotoPrincipal: '',  
-          fotos: [],
+          fotoPrincipal: 'https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/bogota1.jpg',  
+          fotos: ['https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/bogota2.jpeg', 'https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/bogota3.jpg'],
           reservas: [
             {
               fechaInicio: "2024-10-01",
@@ -37,17 +37,17 @@ export class ViviendaService {
         },
         {
           id: 2,
-          titulo: "Casa en las montañas",
-          descripcion: "Una tranquila casa con vista a las montañas.",
+          titulo: "Casa de campo",
+          descripcion: "Hermosa casa de campo con vistas a las montañas.",
           pais: "Colombia",
           ciudad: "Medellín",
-          direccion: "Vereda El Rosario",
-          precioNoche: 150,
+          direccion: "Vereda El Salado",
+          precioNoche: 200,
           habitaciones: 3,
           banos: 2,
           capacidadMaxima: 6,
-          fotoPrincipal: '',
-          fotos: [],
+          fotoPrincipal: 'https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/medellin1.jpeg?t=2024-10-05T01%3A26%3A21.284Z',
+          fotos: ['https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/medellin2.jpeg?t=2024-10-05T01%3A26%3A30.220Z', 'https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/medellin3.jpeg?t=2024-10-05T01%3A26%3A36.503Z'],
           reservas: [
             {
               fechaInicio: "2024-11-01",
@@ -57,21 +57,21 @@ export class ViviendaService {
         },
         {
           id: 3,
-          titulo: "Apartamento con vista al mar",
-          descripcion: "Un hermoso apartamento con vista al mar.",
+          titulo: "Casa de playa",
+          descripcion: "Hermosa casa de playa con vistas al mar.",
           pais: "Colombia",
           ciudad: "Cartagena",
-          direccion: "Avenida del Malecón",
+          direccion: "Trianon",
           precioNoche: 200,
-          habitaciones: 2,
+          habitaciones: 3,
           banos: 2,
-          capacidadMaxima: 4,
-          fotoPrincipal: '',
-          fotos: [],
+          capacidadMaxima: 6,
+          fotoPrincipal: 'https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/cartagena1.jpeg?t=2024-10-05T01%3A26%3A43.613Z',
+          fotos: ['https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/cartagena2.jpg?t=2024-10-05T01%3A26%3A49.593Z', 'https://ocmefpjbkckbnvobewre.supabase.co/storage/v1/object/public/aircnc_images/calva123@gay.com/cartagena3.jpeg?t=2024-10-05T01%3A26%3A53.792Z'],
           reservas: [
             {
-              fechaInicio: "2024-12-15",
-              fechaFin: "2024-12-20"
+              fechaInicio: "2024-11-01",
+              fechaFin: "2024-11-07"
             }
           ]
         }
@@ -88,7 +88,7 @@ export class ViviendaService {
 
   async crearVivienda(vivienda: Vivienda): Promise<void> {
     vivienda.id = this.viviendas[this.viviendas.length - 1].id + 1;
-    
+
     if (vivienda.fotoPrincipal) {
       const fotoUrl = await this.supabaseService.getImageUrl(vivienda.fotoPrincipal);
       vivienda.fotoPrincipal = fotoUrl || vivienda.fotoPrincipal;

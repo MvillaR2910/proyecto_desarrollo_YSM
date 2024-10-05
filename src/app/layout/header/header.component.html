@@ -2,17 +2,21 @@
   <nav>
     <ul class="nav-list">
       <li><a href="/">AirCNC</a></li>
-      <li><a href="/home">Propiedades</a></li>
+      <li><a href="/viviendas">Propiedades</a></li>
+
+      <!-- Mostrar botón de "Crear Vivienda" si el usuario está logueado -->
+      <li *ngIf="isLoggedIn"><a href="/manejar-vivienda">Crear Vivienda</a></li>
     </ul>
+
     <div class="menu">
       <button (click)="toggleMenu()" class="menu-button">
         <i class="fas fa-user"></i>
       </button>
       <div class="dropdown" [class.open]="menuOpen">
         <ul class="dropdown-menu">
-          <!-- Mostrar opciones según el estado de autenticación -->
           <li *ngIf="!isLoggedIn"><a href="/login">Iniciar sesión</a></li>
           <li *ngIf="!isLoggedIn"><a href="/signup">Registrar</a></li>
+          <li *ngIf="isLoggedIn"><a href="/profile">Editar perfil</a></li>
           <li *ngIf="isLoggedIn"><a href="/profile">Editar perfil</a></li>
           <li *ngIf="isLoggedIn" (click)="logout()">Cerrar sesión</li>
         </ul>

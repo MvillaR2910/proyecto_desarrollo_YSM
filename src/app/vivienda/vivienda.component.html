@@ -1,61 +1,58 @@
 <main>
-    <!-- Hero Image Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Encuentra tu próximo hogar lejos de casa</h1>
-            <form (submit)="buscarViviendas()" class="search-form">
-                <div class="form-group">
-                    <label for="query">Destino</label>
-                    <input [(ngModel)]="query" name="query" type="text" placeholder="¿A dónde vas?">
-                </div>
-
-                <div class="form-group">
-                    <label for="minPrecio">Precio mínimo por noche</label>
-                    <input [(ngModel)]="minPrecio" id="minPrecio" name="minPrecio" type="number">
-                </div>
-
-                <div class="form-group">
-                    <label for="maxPrecio">Precio máximo por noche</label>
-                    <input [(ngModel)]="maxPrecio" id="maxPrecio" name="maxPrecio" type="number">
-                </div>
-
-                <div class="form-group">
-                    <label for="habitaciones">Cantidad de habitaciones</label>
-                    <input [(ngModel)]="habitaciones" id="habitaciones" name="habitaciones" type="number"
-                        placeholder="Número de habitaciones">
-                </div>
-
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
+      <div class="hero-content">
+        <h1>Encuentra tu próximo hogar lejos de casa</h1>
+        <form (submit)="buscarViviendas()" class="search-form">
+          <div class="form-group">
+            <label for="query">Destino</label>
+            <input [(ngModel)]="query" name="query" type="text" placeholder="¿A dónde vas?">
+          </div>
+  
+          <div class="form-group">
+            <label for="minPrecio">Precio mínimo por noche</label>
+            <input [(ngModel)]="minPrecio" id="minPrecio" name="minPrecio" type="number">
+          </div>
+  
+          <div class="form-group">
+            <label for="maxPrecio">Precio máximo por noche</label>
+            <input [(ngModel)]="maxPrecio" id="maxPrecio" name="maxPrecio" type="number">
+          </div>
+  
+          <div class="form-group">
+            <label for="habitaciones">Cantidad de habitaciones</label>
+            <input [(ngModel)]="habitaciones" id="habitaciones" name="habitaciones" type="number"
+              placeholder="Número de habitaciones">
+          </div>
+  
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
     </section>
-
+  
     <!-- Destinos Populares Section -->
     <section class="popular-destinations">
-        <h2>Destinos populares</h2>
-        <div *ngFor="let vivienda of obtenerViviendas()">
-            <div class="destination" (click)="verDetalles(vivienda.id)">
-                <img [src]="vivienda.fotoPrincipal" alt="{{vivienda.ciudad}}" *ngIf="vivienda.fotoPrincipal">
-
-                <ul>
-                    <li>País: {{vivienda.pais}}</li>
-                    <li>Ciudad: {{vivienda.ciudad}}</li>
-                    <li>Dirección: {{vivienda.direccion}}</li>
-                    <li>Precio por noche: {{vivienda.precioNoche}}</li>
-                    <li>Número de habitaciones: {{vivienda.habitaciones}}</li>
-                    <li>Baños: {{vivienda.banos}}</li>
-                    <li>Capacidad máxima: {{vivienda.capacidadMaxima}}</li>
-                    <li>Descripción: {{vivienda.descripcion}}</li>
-                </ul>
-
-                <div>
-                    <!-- Eliminar vivienda: Solo mostrar si el usuario está logueado -->
-                    <button *ngIf="authService.getUser()" (click)="eliminarVivienda(vivienda.id)">Eliminar</button>
-
-                    <!-- Actualizar vivienda: Solo mostrar si el usuario está logueado -->
-                    <button *ngIf="authService.getUser()" (click)="actualizarVivienda(vivienda.id)">Actualizar</button>
-                </div>
-            </div>
+      <h2>Destinos populares</h2>
+      <div *ngFor="let vivienda of obtenerViviendas()">
+        <div class="destination" (click)="verDetalles(vivienda.id)">
+          <img [src]="vivienda.fotoPrincipal" alt="{{vivienda.ciudad}}" *ngIf="vivienda.fotoPrincipal">
+  
+          <ul>
+            <li>País: {{vivienda.pais}}</li>
+            <li>Ciudad: {{vivienda.ciudad}}</li>
+            <li>Dirección: {{vivienda.direccion}}</li>
+            <li>Precio por noche: {{vivienda.precioNoche}}</li>
+            <li>Número de habitaciones: {{vivienda.habitaciones}}</li>
+            <li>Baños: {{vivienda.banos}}</li>
+            <li>Capacidad máxima: {{vivienda.capacidadMaxima}}</li>
+            <li>Descripción: {{vivienda.descripcion}}</li>
+          </ul>
+  
+          <div>
+            <button *ngIf="authService.isLoggedIn()" (click)="eliminarVivienda(vivienda.id)">Eliminar</button>
+            <button *ngIf="authService.isLoggedIn()" (click)="actualizarVivienda(vivienda.id)">Actualizar</button>
+          </div>
         </div>
+      </div>
     </section>
-</main>
+  </main>
+  

@@ -15,6 +15,7 @@ export class AuthService {
   private user: User | null = null;
 
   constructor() {
+    // Recuperar el usuario autenticado (si existe) cuando se inicia la aplicación
     const storedUser = sessionStorage.getItem('usuario');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
@@ -28,8 +29,11 @@ export class AuthService {
 
   // Método para iniciar sesión
   onLogin(email: string, password: string) {
-    const stringUsuario = localStorage.getItem(email);
+    if (!email || !password) {
+      throw new Error("Todos los campos deben estar completos.");
+    }
 
+    const stringUsuario = localStorage.getItem(email);
     if (!stringUsuario) {
       throw new Error("Email o contraseña inválidos.");
     }
@@ -40,6 +44,7 @@ export class AuthService {
       throw new Error("Email o contraseña inválidos.");
     }
 
+    // Guardar el usuario autenticado en sessionStorage
     this.user = jsonUsuario;
     sessionStorage.setItem('usuario', JSON.stringify(this.user));
   }
@@ -48,5 +53,10 @@ export class AuthService {
   logout() {
     this.user = null;
     sessionStorage.removeItem('usuario');
+  }
+
+  // Método para verificar si el usuario está logueado
+  isLoggedIn(): boolean {
+    return !!this.user;
   }
 }

@@ -30,4 +30,6 @@ export class ViviendaDetailsComponent {
   isValidImage(url: string | null): boolean {
     return !!url && url.trim() !== ''; 
   }
+
+  
 }

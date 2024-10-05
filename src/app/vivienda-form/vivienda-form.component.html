@@ -56,16 +56,14 @@
     <button type="button" (click)="uploadImage()">Subir Foto</button>
   </div>
 
-  <div>
-    <label>Fotos:</label>
-    <div *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
-      <h3>Imágenes Subidas</h3>
-      <div *ngFor="let foto of vivienda.fotos; let i = index">
-        <img [src]="foto" alt="Foto de la propiedad" width="200px" height="auto">
-        <button type="button" (click)="eliminarFoto(i)">Eliminar Foto</button>
-      </div>
-    </div>    
+  <!-- Galería de fotos con opción para eliminar -->
+  <div *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
+    <h3>Fotos Secundarias:</h3>
+    <div *ngFor="let foto of vivienda.fotos; let i = index">
+      <img [src]="foto" alt="Imagen de la vivienda" width="200px" height="auto">
+      <button type="button" (click)="eliminarFoto(i)">Eliminar Foto</button>
+    </div>
   </div>
-  
+
   <button type="submit" class="primary">Guardar Vivienda</button>
 </form>

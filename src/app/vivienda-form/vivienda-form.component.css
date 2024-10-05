@@ -60,8 +60,30 @@ button[type="button"] {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 button[type="button"]:hover {
     background-color: #e02d50;
+}
+
+.gallery img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+button.delete-photo {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button.delete-photo:hover {
+    background-color: #c0392b;
 }

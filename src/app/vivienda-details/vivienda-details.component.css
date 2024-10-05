@@ -1,26 +1,178 @@
+/* Importar fuente */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+/* General */
+body {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li:first-child {
+    font-weight: 700;
+    font-size: 24px;
+    color: #FF385C;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FF385C;
+}
+
+main {
+    padding: 100px 20px 20px 20px;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    background-image: url('../images/paris.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column; /* Coloca el label encima del input */
+    flex-grow: 1;
+}
+
+.form-group label {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-group select {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: #e02d50;
+}
+
 /* Información de la vivienda */
 .destination {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 100px auto 20px auto; /* Aumenta el margen superior a 40px */
-    max-width: 800px; /* Ancho máximo para la sección */
-    overflow: hidden; /* Evita que el contenido se salga del borde */
+    margin: 100px auto 20px auto;
+    max-width: 800px; 
+    overflow: hidden; 
 }
 
 /* Imagen principal */
 .destination img {
     width: 100%;
-    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
     display: block;
 }
 
 /* Información detallada */
 .destination ul {
-    list-style: none; /* Elimina el estilo por defecto de la lista */
+    list-style: none; 
     padding: 15px;
     margin: 0;
-    text-align: left; /* Alinea el texto a la izquierda */
+    text-align: left;
 }
 
 .destination ul li {
@@ -29,46 +181,180 @@
     margin-bottom: 8px;
 }
 
-/* Galería de fotos adicionales */
-.gallery {
+/* Galería en formato mosaico */
+.gallery-grid {
     padding: 15px;
-    border-top: 1px solid #ddd;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
 }
 
-.gallery h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+.gallery-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; 
+    border-radius: 5px;
+}
+
+/* Botones de acciones */
+.destination div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+/* Botón Eliminar */
+.destination button {
+    padding: 10px 15px;
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.destination button:hover {
+    background-color: #e02d50;
+}
+
+/* Propiedades Destacadas */
+.properties-grid .destination img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Destinos Populares */
+.popular-destinations {
+    padding: 50px 20px;
+    background-color: #ffffff;
+}
+
+.popular-destinations h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
     color: #333;
 }
 
-.gallery img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px; /* Espacio entre las fotos */
-    border-radius: 5px; /* Bordes redondeados para las imágenes */
+/* Testimonios */
+.testimonials {
+    padding: 50px 20px;
+    background-color: #ffffff;
 }
 
-/* Responsivo */
+.testimonials h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.testimonial {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #FF385C;
+    padding-left: 15px;
+}
+
+.testimonial p {
+    margin: 0;
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons li {
+    margin: 0 10px;
+}
+
+.social-icons li a {
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.social-icons li a:hover {
+    color: #FF385C;
+}
+
+footer p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .destination {
-        padding: 10px; /* Relleno en pantallas pequeñas */
+    .form-group {
+        width: 100%;
+    }
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero {
+        padding: 70px 20px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form input[type="text"],
+    .search-form input[type="date"] {
+        width: 95%;
+        margin-bottom: 9px;
+    }
+
+    .destinations-grid,
+    .properties-grid {
+        grid-template-columns: 1fr;
     }
 
     .destination ul li {
-        font-size: 14px; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+        font-size: 14px;
     }
 
-    .gallery h3 {
-        font-size: 18px; /* Tamaño de fuente más pequeño para el título de la galería */
+    .destination button {
+        font-size: 12px;
+        padding: 8px 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .destination ul li {
-        font-size: 12px; /* Tamaño de fuente más pequeño en pantallas muy pequeñas */
+    .destinations-grid {
+        grid-template-columns: 1fr;
     }
 
-    .gallery h3 {
-        font-size: 16px; /* Tamaño de fuente más pequeño para el título de la galería */
+    .destination ul li {
+        font-size: 12px;
+    }
+
+    .destination button {
+        font-size: 10px;
     }
 }

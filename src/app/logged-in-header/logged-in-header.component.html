@@ -3,6 +3,7 @@
     <ul class="nav-list">
       <li><a href="/">AirCNC</a></li>
       <li><a href="/viviendas">Propiedades</a></li>
+      <li *ngIf="userProfile"><a href="/manejar-vivienda">Crear Vivienda</a></li>
       <li *ngIf="userProfile"><a href="/profile">Editar Perfil</a></li>
       <li *ngIf="userProfile" (click)="logout()">Cerrar sesión</li>
     </ul>

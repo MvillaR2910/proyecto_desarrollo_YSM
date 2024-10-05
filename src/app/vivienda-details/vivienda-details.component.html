@@ -14,11 +14,12 @@
         <li>Descripción: {{vivienda.descripcion}}</li>
     </ul>
 
-    <!-- Galería de fotos adicionales -->
-    <div *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
+    <!-- Galería de fotos adicionales en formato mosaico -->
+    <div class="gallery" *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
         <h3>Imágenes Subidas</h3>
-        <div *ngFor="let foto of vivienda.fotos">
-          <img *ngIf="isValidImage(foto)" [src]="foto" alt="Foto de la propiedad" width="200px" height="auto">
+        <div class="gallery-grid">
+          <!-- Muestra las imágenes en un mosaico -->
+          <img *ngFor="let foto of vivienda.fotos" [src]="foto" alt="Foto de la propiedad">
         </div>
     </div>                   
 </div>
