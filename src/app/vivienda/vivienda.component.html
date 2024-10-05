@@ -33,7 +33,7 @@
     <!-- Destinos Populares Section -->
     <section class="popular-destinations">
         <h2>Destinos populares</h2>
-        <div *ngFor="let vivienda of obetenerViviendas()">
+        <div *ngFor="let vivienda of obtenerViviendas()">
             <div class="destination" (click)="verDetalles(vivienda.id)">
                 <img [src]="vivienda.fotoPrincipal" alt="{{vivienda.ciudad}}" *ngIf="vivienda.fotoPrincipal">
 
@@ -49,8 +49,11 @@
                 </ul>
 
                 <div>
-                    <button (click)="eliminarVivienda(vivienda.id)">Eliminar</button>
-                    <button (click)="actualizarVivienda(vivienda.id)">Actualizar</button>
+                    <!-- Eliminar vivienda: Solo mostrar si el usuario está logueado -->
+                    <button *ngIf="authService.getUser()" (click)="eliminarVivienda(vivienda.id)">Eliminar</button>
+
+                    <!-- Actualizar vivienda: Solo mostrar si el usuario está logueado -->
+                    <button *ngIf="authService.getUser()" (click)="actualizarVivienda(vivienda.id)">Actualizar</button>
                 </div>
             </div>
         </div>

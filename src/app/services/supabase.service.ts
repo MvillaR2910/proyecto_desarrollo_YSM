@@ -42,7 +42,7 @@ export class SupabaseService {
     }
   }
 
-  // Método para obtener la URL pública de la imagen (sin referencia a error)
+  // Método para obtener la URL pública de la imagen 
   async getImageUrl(path: string): Promise<string | null> {
     try {
       const { data } = this.supabase.storage
