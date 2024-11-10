@@ -5,11 +5,13 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 export class Photo {
     @PrimaryGeneratedColumn()
     photo_id: number
+    
     @ManyToOne(()=>Listing, (listing)=>listing.photos)
     @JoinColumn({name:"listing_id",referencedColumnName:"listing_id"})
     listing:Listing
     @Column()
     listing_id: number
+
     @Column()
     photo_url: string
     @Column({ default: new Date() })

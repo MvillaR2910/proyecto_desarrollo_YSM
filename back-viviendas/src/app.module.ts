@@ -14,11 +14,7 @@ import 'dotenv/config'
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.BD_HOST,
-      port: Number(process.env.BD_PORT),
-      username: process.env.BD_USER,
-      password: process.env.BD_PASSWORD,
-      database: process.env.BD_DATABASE,
+      url : process.env.URI,
       synchronize: true,
       autoLoadEntities:true
     }),
