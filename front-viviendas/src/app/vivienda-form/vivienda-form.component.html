@@ -1,0 +1,69 @@
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div>
+    <label for="titulo">Título:</label>
+    <input type="text" [(ngModel)]="vivienda.titulo" name="titulo" required>
+  </div>
+
+  <div>
+    <label for="descripcion">Descripción:</label>
+    <input type="text" [(ngModel)]="vivienda.descripcion" name="descripcion" required>
+  </div>
+
+  <div>
+    <label for="pais">País:</label>
+    <input type="text" [(ngModel)]="vivienda.pais" name="pais" required>
+  </div>
+
+  <div>
+    <label for="ciudad">Ciudad:</label>
+    <input type="text" [(ngModel)]="vivienda.ciudad" name="ciudad" required>
+  </div>
+
+  <div>
+    <label for="direccion">Dirección:</label>
+    <input type="text" [(ngModel)]="vivienda.direccion" name="direccion" required>
+  </div>
+
+  <div>
+    <label for="precioNoche">Precio por Noche:</label>
+    <input type="number" [(ngModel)]="vivienda.precioNoche" name="precioNoche" required>
+  </div>
+
+  <div>
+    <label for="habitaciones">Número de Habitaciones:</label>
+    <input type="number" [(ngModel)]="vivienda.habitaciones" name="habitaciones" required>
+  </div>
+
+  <div>
+    <label for="banos">Baños:</label>
+    <input type="number" [(ngModel)]="vivienda.banos" name="banos" required>
+  </div>
+
+  <div>
+    <label for="capacidadMaxima">Capacidad Máxima:</label>
+    <input type="number" [(ngModel)]="vivienda.capacidadMaxima" name="capacidadMaxima" required>
+  </div>
+
+  <div>
+    <label for="fotoPrincipal">Subir Foto Principal:</label>
+    <input type="file" (change)="onPrincipalFileSelected($event)" />
+    <button type="button" (click)="uploadPrincipalImage()">Subir Foto Principal</button>
+  </div>
+
+  <div>
+    <label for="fotos">Subir Fotos Secundarias:</label>
+    <input type="file" (change)="onFileSelected($event)" />
+    <button type="button" (click)="uploadImage()">Subir Foto</button>
+  </div>
+
+  <!-- Galería de fotos con opción para eliminar -->
+  <div *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
+    <h3>Fotos Secundarias:</h3>
+    <div *ngFor="let foto of vivienda.fotos; let i = index">
+      <img [src]="foto" alt="Imagen de la vivienda" width="200px" height="auto">
+      <button type="button" (click)="eliminarFoto(i)">Eliminar Foto</button>
+    </div>
+  </div>
+
+  <button type="submit" class="primary">Guardar Vivienda</button>
+</form>

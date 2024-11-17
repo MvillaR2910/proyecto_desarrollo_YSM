@@ -1,0 +1,25 @@
+<div class="destination" *ngIf="vivienda">
+    <!-- Imagen principal -->
+    <img [src]="vivienda.fotoPrincipal" alt="{{vivienda.ciudad}}" *ngIf="vivienda.fotoPrincipal">
+
+    <!-- Información detallada -->
+    <ul>
+        <li>País: {{vivienda.pais}}</li>
+        <li>Ciudad: {{vivienda.ciudad}}</li>
+        <li>Dirección: {{vivienda.direccion}}</li>
+        <li>Precio por noche: {{vivienda.precioNoche}}</li>
+        <li>Número de habitaciones: {{vivienda.habitaciones}}</li>
+        <li>Baños: {{vivienda.banos}}</li>
+        <li>Capacidad máxima: {{vivienda.capacidadMaxima}}</li>
+        <li>Descripción: {{vivienda.descripcion}}</li>
+    </ul>
+
+    <!-- Galería de fotos adicionales en formato mosaico -->
+    <div class="gallery" *ngIf="vivienda.fotos && vivienda.fotos.length > 0">
+        <h3>Imágenes Subidas</h3>
+        <div class="gallery-grid">
+          <!-- Muestra las imágenes en un mosaico -->
+          <img *ngFor="let foto of vivienda.fotos" [src]="foto" alt="Foto de la propiedad">
+        </div>
+    </div>                   
+</div>

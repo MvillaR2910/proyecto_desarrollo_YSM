@@ -1,0 +1,20 @@
+<header>
+  <nav>
+    <!-- Botón de menú hamburguesa -->
+    <button class="hamburger" (click)="toggleMenu()">&#9776;</button>
+
+    <!-- Lista de navegación que se despliega en el menú hamburguesa -->
+    <ul class="nav-list" [class.hamburger-open]="isMenuOpen">
+      <li><a href="/">AirCNC</a></li>
+      <li><a href="/viviendas">Propiedades</a></li>
+      <li *ngIf="userProfile"><a href="/manejar-vivienda">Crear Vivienda</a></li>
+      <li *ngIf="userProfile"><a href="/profile">Editar Perfil</a></li>
+      <li *ngIf="userProfile" (click)="logout()">Cerrar sesión</li>
+    </ul>
+  </nav>
+
+  <!-- Mostrar el nombre del usuario y el mensaje de bienvenida -->
+  <div *ngIf="userProfile" class="welcome-message">
+    <p>Bienvenido, {{ userProfile.nombre }}</p>
+  </div>
+</header>

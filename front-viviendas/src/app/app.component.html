@@ -1,0 +1,12 @@
+<div>
+    <!-- Mostramos el header dependiendo si el usuario está autenticado -->
+    <app-logged-in-header *ngIf="isLoggedIn"></app-logged-in-header>
+    <app-header *ngIf="!isLoggedIn"></app-header>
+    
+    <!-- Aquí se muestra el contenido de la aplicación -->
+    <router-outlet></router-outlet>
+  
+    <!-- Pie de página -->
+    <app-footer></app-footer>
+  </div>
+  

@@ -1,0 +1,84 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding-bottom: 100px; /* Añadido para evitar que el contenido se superponga con el footer */
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centramos verticalmente */
+  min-height: calc(100vh - 60px); /* Restamos la altura del header (60px) */
+  padding: 20px;
+  margin-top: 60px; /* Añadimos margen superior para evitar que se superponga con el header */
+}
+
+.profile-box {
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+}
+
+.profile-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.profile-box input,
+.profile-box textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.profile-box button {
+  background-color: #FF385C;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-box button:hover {
+  background-color: #e02d50;
+}
+
+.profile-preview {
+  margin-top: 25px;
+}
+
+.profile-preview img {
+  max-width: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile-preview p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilo para asegurar que el footer siempre esté al final */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+}

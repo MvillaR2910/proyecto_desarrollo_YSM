@@ -1,0 +1,89 @@
+.form-container {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 600px; /* Ampliar para mayor comodidad */
+    margin: 80px auto 0; /* Añadimos margen superior para evitar que quede debajo del header */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container div {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form-container input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-container input:focus {
+    border-color: #FF385C;
+    outline: none;
+}
+
+.primary {
+    padding: 12px 20px;
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.primary:hover {
+    background-color: #e02d50;
+}
+
+button[type="button"] {
+    background-color: #FF385C;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #e02d50;
+}
+
+.gallery img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+button.delete-photo {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button.delete-photo:hover {
+    background-color: #c0392b;
+}
